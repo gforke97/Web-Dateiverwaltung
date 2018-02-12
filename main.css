@@ -26,6 +26,9 @@
 
 #connectftp1 {
   padding-left: 2em;
+}
+
+#connectftp2 {
   padding-right: 2em;
 }
 
@@ -33,6 +36,14 @@
   margin-bottom: 0.5em;
 }
 
+#connectftp2 input {
+  margin-bottom: 0.5em;
+}
+
 #connectftp1 button {
+  border-radius: 8px;
+}
+
+#connectftp2 button {
   border-radius: 8px;
 }
