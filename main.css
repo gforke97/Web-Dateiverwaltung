@@ -1,0 +1,37 @@
+.jumbotron {
+  background-color: black;
+  font-family: helvetica, sans-serif;
+  color: white;
+}
+
+#inputpath1 {
+  padding-left: 2em;
+}
+
+#inputpath2 {
+  padding-right: 2em;
+}
+
+@media (min-width=576px) {
+  #inputpath2 {
+    padding-left: 2em;
+  }
+}
+
+@media (min-width=576px) {
+  #inputpath1 {
+    padding-right: 2em;
+  }
+}
+
+#connectftp1 {
+  padding-left: 2em;
+}
+
+#connectftp1 input {
+  margin-bottom: 0.5em;
+}
+
+#connectftp1 button {
+  border-radius: 8px;
+}
