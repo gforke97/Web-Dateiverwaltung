@@ -61,7 +61,7 @@ $logintemplate = "
 <form method='POST'>
 <input type='text' name='log-name' placeholder='Benutzernamen eingeben'><br/><br/>
 <input type='password' name='log-password' placeholder='Passwort eingeben'><br/><br/>
-<input type='submit' class='btn btn-large purple' value='log in'>
+<input type='submit' class='btn btn-large purple' value='log in'> <input type='button' class='btn btn-large purple' onclick='$this->loadRegistrationform()' value='register'>
 
 
 </form>
@@ -124,7 +124,7 @@ $template = "
 <br/><br/>
 <form method='POST'>
 <input type='text' name='uname' placeholder='Benutzernamen eingeben'><br/><br/>
-<input type='password' name='password' placeholder='password' placeholder='Passwort eingeben'>
+<input type='password' name='password' placeholder='Passwort' placeholder='Passwort eingeben'>
 <br/><br/>
 <input type='password' name='repassword' placeholder='Passwort erneut eingeben'>
 <br/><br/>
