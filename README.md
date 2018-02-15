@@ -1,7 +1,2 @@
 # Web-Dateiverwaltung
-Weboberfläche zur Datei Verwaltung (smb und ftp, ... Support)
-
-<<<<<<< HEAD
-Test12
-=======
-Test
+Weboberfläche zur Datei Verwaltung (SMB und FTP, ... Support)
