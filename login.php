@@ -59,8 +59,8 @@ $logintemplate = "
 <h4>Login</h4>
 <br/><br/><br/>
 <form method='POST'>
-<input type='text' name='log-email' placeholder='enter your email id'><br/><br/>
-<input type='password' name='log-password' placeholder='enter your password'><br/><br/>
+<input type='text' name='log-name' placeholder='Benutzernamen eingeben'><br/><br/>
+<input type='password' name='log-password' placeholder='Passwort eingeben'><br/><br/>
 <input type='submit' class='btn btn-large purple' value='log in'>
 
 
@@ -123,12 +123,12 @@ $template = "
 <h4>Register</h4>
 <br/><br/>
 <form method='POST'>
-<input type='text' name='email' placeholder='enter your email id'><br/><br/>
-<input type='password' name='password' placeholder='password' placeholder='enter your password'>
+<input type='text' name='uname' placeholder='Benutzernamen eingeben'><br/><br/>
+<input type='password' name='password' placeholder='password' placeholder='Passwort eingeben'>
 <br/><br/>
-<input type='password' name='repassword' placeholder='renenter your password'>
+<input type='password' name='repassword' placeholder='Passwort erneut eingeben'>
 <br/><br/>
-<input type='submit' class='btn btn-large red' value='register'>
+<input type='submit' class='btn btn-large red' value='Registrieren'>
 </form>
 
 
@@ -148,13 +148,13 @@ echo $template;
 
 
 
-public function createuserentry($email, $password, $filename, $success_message) {
+public function createuserentry($uname, $password, $filename, $success_message) {
 
 
 if (fopen($filename, w)) {
 
     fclose($filename);
-	$this->createjsonfile($email, $password, $filename);
+	$this->createjsonfile($uname, $password, $filename);
 	echo $success_message;
 
 }
@@ -176,17 +176,17 @@ else {
 
 
 
-private function createjsonfile($email, $password, $filename) {
+private function createjsonfile($uname, $password, $filename) {
 
 $handle = fopen($filename, "w");
 
 
 $password = password_hash($password, PASSWORD_DEFAULT);
 
-$email = password_hash($email, PASSWORD_DEFAULT);
+$uname = password_hash($uname, PASSWORD_DEFAULT);
 
 
-$array = array("email"=>$email, "password"=>$password);
+$array = array("uname"=>$uname, "password"=>$password);
 
 $string = json_encode($array);
 
@@ -203,7 +203,7 @@ fclose($handle);
 
 
 
-public function login($email, $password) {
+public function login($uname, $password) {
 
 $data = file_get_contents("./db/login.json");
 
@@ -212,12 +212,12 @@ $json = json_decode($data, true);
 
 
 
-$j_email = $json['email'];
+$j_uname = $json['uname'];
 
 $j_password = $json['password'];
 
 
-if (password_verify($email, $j_email)) {
+if (password_verify($uname, $j_uname)) {
 
 	if (password_verify($password, $j_password)) {
 
@@ -227,14 +227,14 @@ if (password_verify($email, $j_email)) {
 	}
 	else {
 
-		echo "the password is incorrect";
+		echo "Falsches Passwort";
 	}
 
 }
 
 else {
 
-echo "the email id you have entered is incorrect";
+echo "Der eingegebene Benutzername ist falsch.";
 
 
 }
@@ -268,9 +268,9 @@ $jls->loadjls();
 
 
 
-if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['repassword'])) {
+if (isset($_POST['uname']) && isset($_POST['password']) && isset($_POST['repassword'])) {
 
-  if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
+  if (!empty($_POST['uname']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
 
   		if ($jls->checkUserAlreadyRegistered()) {
 
@@ -283,14 +283,14 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['repassw
 
   		$repassword = $_POST['repassword'];
 
-  		$email = $_POST['email'];
+  		$uname = $_POST['uname'];
 
-  		$success_message = "success , your email id has been registered";
+  		$success_message = "Ihr Benutzername wurde registriert";
 
   		$filename = "./db/login.json";
 
       if ($password == $repassword) {
-  	    $jls->createuserentry($email, $password, $filename, $success_message);
+  	    $jls->createuserentry($uname, $password, $filename, $success_message);
   	   }
   	   else {
   	   	echo "both passwords are not same, retype and submit";
@@ -302,17 +302,17 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['repassw
 
 
 
-if (isset($_POST['log-email']) && isset($_POST['log-password'])) {
+if (isset($_POST['log-name']) && isset($_POST['log-password'])) {
 
-	if (!empty($_POST['log-email']) && !empty($_POST['log-password'])) {
+	if (!empty($_POST['log-name']) && !empty($_POST['log-password'])) {
 
-		$log_email = $_POST['log-email'];
+		$log_name = $_POST['log-name'];
 
 		$log_password = $_POST['log-password'];
 
 			if ($jls->checkUserAlreadyRegistered()) {
 
-				$jls->login($log_email, $log_password);
+				$jls->login($log_name, $log_password);
 			}
 
 			else {
