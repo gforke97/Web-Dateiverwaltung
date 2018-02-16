@@ -1,5 +1,5 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- 
+
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
@@ -9,7 +9,7 @@
   <!-- Compiled and minified JavaScript -->
 <div class="col-xs-3"></div>
   <div class="col-xs-6 text-center" id='box'>
-<?php 
+<?php
 /**
 *@author: Naveen
 *
@@ -20,29 +20,15 @@ class jls {
 
 
 public function checkUserAlreadyRegistered () {
-
   if (file_exists("./db/login.json"))
    {
-
 	return true;
-
-
     }
 
   else {
-
 	  return false;
-
     }
-
-
 }
-
-
-
-
-
-
 
 
 private function loadloginform() {
@@ -50,11 +36,7 @@ private function loadloginform() {
 }
 
 
-
-
-
 private function displaylogintemplate() {
-
 $logintemplate = "
 <h4>Login</h4>
 <br/><br/><br/>
@@ -62,63 +44,28 @@ $logintemplate = "
 <input type='text' name='log-name' placeholder='Benutzernamen eingeben'><br/><br/>
 <input type='password' name='log-password' placeholder='Passwort eingeben'><br/><br/>
 <input type='submit' class='btn btn-large purple' value='log in'> <input type='button' class='btn btn-large purple' onclick='$this->loadRegistrationform()' value='register'>
-
-
 </form>
 ";
-
 echo $logintemplate;
-
 }
-
-
-
-
-
-
 
 
 public function loadjls() {
-
-if ($this->checkUserAlreadyRegistered()) {
-$this->loadloginform();
-
-
+    if ($this->checkUserAlreadyRegistered()) {
+        $this->loadloginform();
+    }
+    else {
+        $this->loadRegistrationform();
+    }
 }
-
-else {
-
-
-
-$this->loadRegistrationform();
-
-}
-
-
-}
-
-
-
-
 
 
 private function loadRegistrationform() {
-
-
-$this->displayregistrationtemplate();
-
-
-
+    $this->displayregistrationtemplate();
 }
 
 
-
-
-
-
 private function displayregistrationtemplate() {
-
-
 $template = "
 <h4>Register</h4>
 <br/><br/>
@@ -130,73 +77,32 @@ $template = "
 <br/><br/>
 <input type='submit' class='btn btn-large red' value='Registrieren'>
 </form>
-
-
 ";
-
 echo $template;
-
-
-
-
 }
-
-
-
-
-
-
 
 
 public function createuserentry($uname, $password, $filename, $success_message) {
-
-
 if (fopen($filename, w)) {
-
     fclose($filename);
 	$this->createjsonfile($uname, $password, $filename);
 	echo $success_message;
-
 }
 else {
-
 	$file_Error = "the file cant be created due to no suitable permisisons";
-
-
 	echo $file_Error;
-
-
 }
-
 }
-
-
-
-
-
 
 
 private function createjsonfile($uname, $password, $filename) {
-
-$handle = fopen($filename, "w");
-
-
-$password = password_hash($password, PASSWORD_DEFAULT);
-
-$uname = password_hash($uname, PASSWORD_DEFAULT);
-
-
-$array = array("uname"=>$uname, "password"=>$password);
-
-$string = json_encode($array);
-
-
-fwrite($handle, $string);
-
-fclose($handle);
-
-
-
+    $handle = fopen($filename, "w");
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $uname = password_hash($uname, PASSWORD_DEFAULT);
+    $array = array("uname"=>$uname, "password"=>$password);
+    $string = json_encode($array);
+    fwrite($handle, $string);
+    fclose($handle);
 }
 
 
