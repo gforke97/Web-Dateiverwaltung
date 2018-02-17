@@ -19,150 +19,167 @@
 class jls {
 
 
-public function checkUserAlreadyRegistered () {
-  if (file_exists("./db/login.json"))
-   {
-	return true;
+    public function checkUserAlreadyRegistered () {
+      if (file_exists("./db/login.json"))
+       {
+        return true;
+        }
+
+      else {
+          return false;
+        }
     }
 
-  else {
-	  return false;
+
+    private function loadloginform() {
+        $this->displaylogintemplate();
     }
-}
 
 
-private function loadloginform() {
-	$this->displaylogintemplate();
-}
-
-
-private function displaylogintemplate() {
-$logintemplate = "
-<h4>Login</h4>
-<br/><br/><br/>
-<form method='POST'>
-<input type='text' name='log-name' placeholder='Benutzernamen eingeben'><br/><br/>
-<input type='password' name='log-password' placeholder='Passwort eingeben'><br/><br/>
-<input type='submit' class='btn btn-large purple' value='log in'> <input type='button' class='btn btn-large purple' onclick='$this->loadRegistrationform()' value='register'>
-</form>
-";
-echo $logintemplate;
-}
-
-
-public function loadjls() {
-    if ($this->checkUserAlreadyRegistered()) {
-        $this->loadloginform();
+    private function displaylogintemplate() {
+        $logintemplate = "
+        <h4>Login</h4>
+        <br/><br/><br/>
+        <form method='POST'>
+        <input type='text' name='log-name' placeholder='Benutzernamen eingeben'><br/><br/>
+        <input type='password' name='log-password' placeholder='Passwort eingeben'><br/><br/>
+        <input type='submit' class='btn btn-large purple' value='log in'> <input type='submit' class='btn btn-large purple' value='register'>
+        </form>
+        ";
+        echo $logintemplate;
     }
-    else {
+
+
+    public function loadjls() {
+        if ($this->checkUserAlreadyRegistered()) {
+            $this->loadloginform();
+        }
+        else {
+            $this->loadRegistrationform();
+        }
+    }
+
+
+    public function loadjlsregistration() {
         $this->loadRegistrationform();
     }
+
+
+    private function loadRegistrationform() {
+        $this->displayregistrationtemplate();
+    }
+
+
+    private function displayregistrationtemplate() {
+        $template = "
+        <h4>Register</h4>
+        <br/><br/>
+        <form method='POST'>
+        <input type='text' name='uname' placeholder='Benutzernamen eingeben'><br/><br/>
+        <input type='password' name='password' placeholder='Passwort eingeben'>
+        <br/><br/>
+        <input type='password' name='repassword' placeholder='Passwort erneut eingeben'>
+        <br/><br/>
+        <input type='submit' class='btn btn-large red' value='Registrieren'>
+        </form>
+        ";
+        echo $template;
+    }
+
+
+    public function createuserentry($uname, $password, $filename, $success_message) {
+        if ($file = fopen($filename, 'a')) {
+            fclose($file);
+	        $this->createjsonfile($uname, $password, $filename);
+	        echo $success_message;
+        }
+        else {
+	        $file_Error = "the file cant be created due to no suitable permisisons";
+	        echo $file_Error;
+        }
+    }
+
+
+    private function createjsonfile($uname, $password, $filename) {
+        $handle = fopen($filename, 'a');
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $array = array("uname"=>$uname, "password"=>$password);
+        $string = json_encode($array);
+        fwrite($handle, $string."\r\n");
+        fclose($handle);
+    }
+
+
+    /**
+     * @param $uname
+     * @param $password
+     */
+    public function login($uname, $password) {
+        $data = file_get_contents("./db/login.json");
+        $datas = $this->json_split_objects($data);
+        for($n=0;$n<(count($datas));$n++) {
+            $json = json_decode($datas[$n], true);
+            $j_uname = $json['uname'];
+            $j_password = $json['password'];
+            $succes = "";
+            $fpwd = "";
+            if ($uname == $j_uname) {
+                if (password_verify($password, $j_password)) {
+                    $succes = True;
+                }
+                else {
+                    $fpwd = False;
+                }
+            }
+        }
+        if ($succes) {
+            echo "success";
+        }
+        else {
+            if ($fpwd) {
+                echo "Falsches Passwort";
+            }
+            else {
+                echo "Der eingegebene Benutzername ist falsch.";
+            }
+        }
+    }
+
+
+    /**
+     * @param $json
+     * @return mixed
+     */
+    private function json_split_objects($json)
+    {
+        $q = FALSE;
+        $len = strlen($json);
+        for($l=$c=$i=0;$i<$len;$i++)
+        {
+            $json[$i] == '"' && ($i>0?$json[$i-1]:'') != '\\' && $q = !$q;
+            if(!$q && in_array($json[$i], array(" ", "\r", "\n", "\t"))){continue;}
+            in_array($json[$i], array('{', '[')) && !$q && $l++;
+            in_array($json[$i], array('}', ']')) && !$q && $l--;
+            $objects = 0;
+            (isset($objects[$c]) && $objects[$c] .= $json[$i]) || $objects[$c] = $json[$i];
+            $c += ($l == 0);
+        }
+        return $objects;
+    }
+
+
+    public function checkuname($uuname) {
+        $dataa = file_get_contents("./db/login.json");
+        $jsonn = json_decode($dataa, true);
+        $js_unamee = $jsonn['uname'];
+        if ($uuname == $js_unamee) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
-
-
-private function loadRegistrationform() {
-    $this->displayregistrationtemplate();
-}
-
-
-private function displayregistrationtemplate() {
-$template = "
-<h4>Register</h4>
-<br/><br/>
-<form method='POST'>
-<input type='text' name='uname' placeholder='Benutzernamen eingeben'><br/><br/>
-<input type='password' name='password' placeholder='Passwort' placeholder='Passwort eingeben'>
-<br/><br/>
-<input type='password' name='repassword' placeholder='Passwort erneut eingeben'>
-<br/><br/>
-<input type='submit' class='btn btn-large red' value='Registrieren'>
-</form>
-";
-echo $template;
-}
-
-
-public function createuserentry($uname, $password, $filename, $success_message) {
-if (fopen($filename, w)) {
-    fclose($filename);
-	$this->createjsonfile($uname, $password, $filename);
-	echo $success_message;
-}
-else {
-	$file_Error = "the file cant be created due to no suitable permisisons";
-	echo $file_Error;
-}
-}
-
-
-private function createjsonfile($uname, $password, $filename) {
-    $handle = fopen($filename, "w");
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    $uname = password_hash($uname, PASSWORD_DEFAULT);
-    $array = array("uname"=>$uname, "password"=>$password);
-    $string = json_encode($array);
-    fwrite($handle, $string);
-    fclose($handle);
-}
-
-
-
-
-
-public function login($uname, $password) {
-
-$data = file_get_contents("./db/login.json");
-
-$json = json_decode($data, true);
-
-
-
-
-$j_uname = $json['uname'];
-
-$j_password = $json['password'];
-
-
-if (password_verify($uname, $j_uname)) {
-
-	if (password_verify($password, $j_password)) {
-
-
-	echo "success";
-
-	}
-	else {
-
-		echo "Falsches Passwort";
-	}
-
-}
-
-else {
-
-echo "Der eingegebene Benutzername ist falsch.";
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
 
 
 $jls = new jls;
@@ -171,41 +188,37 @@ $jls = new jls;
 $jls->loadjls();
 
 
-
-
-
 if (isset($_POST['uname']) && isset($_POST['password']) && isset($_POST['repassword'])) {
 
-  if (!empty($_POST['uname']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
+    if (!empty($_POST['uname']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
 
-  		if ($jls->checkUserAlreadyRegistered()) {
+  		if ($jls->checkUserAlreadyRegistered() && $jls->checkuname('uname')) {
 
-  			echo "a user has been already registered, no users can be added further";
+  			echo "Ein Benutzer mit diesem Namen wurde bereits registriert";
   		}
 
   		else {
 
-  		$password = $_POST['password'];
+            $password = $_POST['password'];
 
-  		$repassword = $_POST['repassword'];
+            $repassword = $_POST['repassword'];
 
-  		$uname = $_POST['uname'];
+            $uname = $_POST['uname'];
 
-  		$success_message = "Ihr Benutzername wurde registriert";
+            $success_message = "Ihr Benutzername wurde registriert";
 
-  		$filename = "./db/login.json";
+            $filename = "./db/login.json";
 
-      if ($password == $repassword) {
-  	    $jls->createuserentry($uname, $password, $filename, $success_message);
-  	   }
-  	   else {
-  	   	echo "both passwords are not same, retype and submit";
-  	   }
-  	}
-  }
+            if ($password == $repassword) {
+                $jls->createuserentry($uname, $password, $filename, $success_message);
+                }
+                else {
+                echo "both passwords are not same, retype and submit";
+            }
+  	    }
+    }
 
 }
-
 
 
 if (isset($_POST['log-name']) && isset($_POST['log-password'])) {
@@ -221,11 +234,11 @@ if (isset($_POST['log-name']) && isset($_POST['log-password'])) {
 				$jls->login($log_name, $log_password);
 			}
 
-			else {
-
-			}
-
 	}
+
+    else {
+        $jls->loadjlsregistration();
+    }
 
 
 }
