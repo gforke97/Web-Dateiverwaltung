@@ -1,3 +1,20 @@
+<html>
+<body>
+<br>
+<table>
+<tr>
+<th>Datei</th>
+<th>Größe</th>
+<th>Typ</th>
+<th>Datum</th>
+<th>Aktionen</th>
+</tr>
+
+<tr>
+<td><button type="button" onclick="changedirectory('..');">..</button></td>
+</tr>
+
+</body>
 <?php
 	
  include(__DIR__.'/../lib/FtpClient.php');
@@ -32,20 +49,6 @@ foreach($items as $dateiordner){
 	}
 }
 
-echo "<br>";
-echo "<table>";
-echo "<tr>";
-echo "<th>Datei</th>";
-echo "<th>Größe</th>";
-echo "<th>Typ</th>";
-echo "<th>Datum</th>";
-echo "<th>Aktionen</th>";
-echo "</tr>";
-
-echo "<tr>";
-echo "<td><button type=\"button\" onclick=\"changedirectory('..');\">..</button></td>";
-echo "</tr>";
-
 foreach ($ordners as $ordner){
 echo "<tr>";
 echo "<td><button type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
@@ -64,7 +67,8 @@ foreach ($dateien as $datei){
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $datei[name];
 echo "<tr>";
 echo "<td><button type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
-echo "<td>$datei[size]</td>";
+$dateigroesse = humanfilesize($datei[size]);
+echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
 echo "<td><button type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
@@ -73,4 +77,12 @@ echo "</tr>";
 
 echo "</table>";
 
+//Danke an: http://jeffreysambells.com/2012/10/25/human-readable-filesize-php
+function humanfilesize($bytes, $decimals = 2) {
+    $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
+    $factor = floor((strlen($bytes) - 1) / 3);
+    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
+}
+
 ?>
+</html>
