@@ -1,69 +1,76 @@
+<html>
+
+  <head>
+
+    <!--Bootstrap Framework-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<script>
+	function showfiles() {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("fileslist").innerHTML = this.responseText;
+        }
+    };
+    xmlhttp.open("GET","showdirectorycontent.php?aufruf=TRUE");
+    xmlhttp.send();   
+	}
+	
+	function changedirectory() {
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.open("GET","changedirectory.php?ordner=test");
+    xmlhttp.send();
+	
+	showfiles();
+	}
+	
+	</script>
+  </head>
+
+  <body>
+
+    <div class="jumbotron text-center">
+
+      <h1>Web Dateiverwaltung PHP</h1>
+
+    </div>
+
 <?php
 
- include 'lib/FtpClient.php';
- include 'lib/FtpException.php';
- include 'lib/FtpWrapper.php';
- print "Hello World!";
- $ftp = new \FtpClient\FtpClient();
- $ftp->connect('192.168.0.16');
- $ftp->login('test', 'test');
+ include 'showdirectorycontent.php';
+
+
 
 $dateien=array();
 $ordner=array();
 
-function ordnerscan($ftp){
- $items = $ftp->scanDir(false);
- //print_r ($items['file#/putty.zip']);
- global $dateien, $ordner;
- //global $ordner = array();
+echo "<button type=\"button\" onclick=\"showfiles()\">Aktualisieren</button>";
 
-foreach($items as $dateiordner){
-	print_r ($dateiordner['type']);
-	if ($dateiordner['type'] == "file"){
-	//print_r ($dateiordner);
-	$dateien[] = $dateiordner;
-	}
-	if ($dateiordner['type'] == "directory"){
-        //print_r ($dateiordner);
-	$ordner[] = $dateiordner;
-	}
-}
+echo "<div id=\"fileslist\">";
 
-print_r ($dateien);
-print_r ($ordner);
+showdirectorycontent($ftp);
 
+echo "</div>";
 
-}
-
-
-
-
-ordnerscan($ftp);
-
-echo $ftp->pwd();
-
-
-echo "<br>";
-echo "<table>";
-echo "<tr>";
-echo "<th>Datei</th>";
-echo "<th>Datum</th>";
-echo "<th>Größe</th>";
-echo "<th>Aktionen</th>";
-echo "</tr>";
-foreach ($dateien as $datei){
-
-echo $datei['name'];
-echo "<br>";
-//echo "Hallo";
-
-echo "<tr>";
-echo "<td>$datei[name]</td>";
-echo "<td>$datei[day]. $datei[month]</td>";
-echo "<td>$datei[size]</td>";
-echo "</tr>";
-
-
-}
-echo "</table>";
 ?>
+
+
+  </body>
+
+</html>
