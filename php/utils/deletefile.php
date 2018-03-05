@@ -1,10 +1,3 @@
-<html>
-<head>
-<script>
-</script>
-</head>
-<body>
-
 <?php
 $vollerpfad=$_GET['vollerpfad'];
  
@@ -22,6 +15,3 @@ $vollerpfad=$_GET['vollerpfad'];
  $ftp->close();
  
 ?>
-
-</body>
-</html>

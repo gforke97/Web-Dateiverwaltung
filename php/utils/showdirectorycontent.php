@@ -1,20 +1,4 @@
-<html>
-<head>
-<script>
-</script>
-</head>
-<body>
-
 <?php
-
-$aufruf=$_GET['aufruf'];
-
-if ($aufruf== TRUE){
-
-	showdirectorycontent();
-}
-
-function showdirectorycontent(){
 	
  include(__DIR__.'/../lib/FtpClient.php');
  include(__DIR__.'/../lib/FtpException.php');
@@ -48,12 +32,6 @@ foreach($items as $dateiordner){
 	}
 }
 
-#print_r ($dateien);
-#print_r ($ordner);
-
-#echo $ftp->pwd();
-
-
 echo "<br>";
 echo "<table>";
 echo "<tr>";
@@ -83,20 +61,16 @@ echo "</tr>";
 }
 
 foreach ($dateien as $datei){
+$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $datei[name];
 echo "<tr>";
-echo "<td>$datei[name]</td>";
+echo "<td><button type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
 echo "<td>$datei[size]</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
-$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $datei[name];
 echo "<td><button type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
 echo "</tr>";
 }
 
 echo "</table>";
-}
 
 ?>
-
-</body>
-</html>

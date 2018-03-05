@@ -1,13 +1,6 @@
-<html>
-<head>
-<script>
-</script>
-</head>
-<body>
-
 <?php
 //kompletter Pfad
-$ordnerdatei=$_GET['ordnerdatei'];
+$datei=$_GET['datei'];
  
  include(__DIR__.'/../lib/FtpClient.php');
  include(__DIR__.'/../lib/FtpException.php');
@@ -18,11 +11,24 @@ $ordnerdatei=$_GET['ordnerdatei'];
  $ftp->connect($_SESSION['ip']);
  $ftp->login($_SESSION['user'], $_SESSION['pass']);
  
- //$ftp->get("/tmp/test.zip", "putty.zip", 2);
+ $ftp->chdir($_SESSION['aktordner']);
+ 
+ $downloadpfad = DIRECTORY_SEPARATOR . "tmp" . DIRECTORY_SEPARATOR . $datei;
+ 
+ $ftp->get($downloadpfad, $datei, 2);
  
   $ftp->close();
+  
+  if (file_exists($downloadpfad)) {
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="'.basename($downloadpfad).'"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($downloadpfad));
+    readfile($downloadpfad);
+    exit;
+}
  
 ?>
-
-</body>
-</html>

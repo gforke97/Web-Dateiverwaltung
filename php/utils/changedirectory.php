@@ -1,10 +1,3 @@
-<html>
-<head>
-<script>
-</script>
-</head>
-<body>
-
 <?php
 $ordner=$_GET['ordner'];
  
@@ -31,6 +24,3 @@ $ordner=$_GET['ordner'];
   $ftp->close();
  
 ?>
-
-</body>
-</html>
