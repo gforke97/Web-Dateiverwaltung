@@ -22,11 +22,11 @@
             document.getElementById("fileslist").innerHTML = this.responseText;
         }
     };
-    xmlhttp.open("GET","showdirectorycontent.php?aufruf=TRUE");
+    xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE");
     xmlhttp.send();   
 	}
 	
-	function changedirectory() {
+	function changedirectory(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -34,7 +34,38 @@
         // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.open("GET","changedirectory.php?ordner=test");
+	var url = "utils/changedirectory.php?ordner=" + str;
+	xmlhttp.open("GET",url);
+    xmlhttp.send();
+	
+	showfiles();
+	}
+	
+	function deletefile(str) {
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	var url = "utils/deletefile.php?vollerpfad=" + str;
+	xmlhttp.open("GET",url);
+    xmlhttp.send();
+	
+	showfiles();
+	}
+	
+	function deletedirectory(str) {
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	var url = "utils/deletedirectory.php?vollerpfad=" + str;
+	xmlhttp.open("GET",url);
     xmlhttp.send();
 	
 	showfiles();
@@ -52,20 +83,17 @@
     </div>
 
 <?php
+chdir(__DIR__);
 
- include 'showdirectorycontent.php';
-
-
-
-$dateien=array();
-$ordner=array();
+session_start();
+$_SESSION['ip'] = "192.168.0.16";
+$_SESSION['user'] = "test";
+$_SESSION['pass'] = "test";
+$_SESSION['aktordner'] = "";
 
 echo "<button type=\"button\" onclick=\"showfiles()\">Aktualisieren</button>";
 
 echo "<div id=\"fileslist\">";
-
-showdirectorycontent($ftp);
-
 echo "</div>";
 
 ?>
