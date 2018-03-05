@@ -126,9 +126,11 @@ class jls {
             if ($uname == $j_uname) {
                 if (password_verify($password, $j_password)) {
                     $succes = True;
+                    break;
                 }
                 else {
-                    $fpwd = False;
+                    $fpwd = True;
+                    break;
                 }
             }
         }
@@ -160,7 +162,6 @@ class jls {
             if(!$q && in_array($json[$i], array(" ", "\r", "\n", "\t"))){continue;}
             in_array($json[$i], array('{', '[')) && !$q && $l++;
             in_array($json[$i], array('}', ']')) && !$q && $l--;
-            $objects = 0;
             (isset($objects[$c]) && $objects[$c] .= $json[$i]) || $objects[$c] = $json[$i];
             $c += ($l == 0);
         }
