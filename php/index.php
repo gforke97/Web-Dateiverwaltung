@@ -122,36 +122,35 @@ $_SESSION['aktordner'] = "";
 
 ?>
 
-  <div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="row">
+      <div class="row">
 
-      <div class="col-md">
+        <div class="col-md">
 
-        <button type="button" onclick="showfiles()">Aktualisieren</button>
+          <button type="button" onclick="showfiles()">Aktualisieren</button>
+
+        </div>
+
+        <div class="col-md">
+
+        </div>
 
       </div>
 
-      <div class="col-md">
+      <div class="row">
+
+        <div class="col-md" id="fileslist">
+
+        </div>
+
+        <div class="col-md">
+
+        </div>
 
       </div>
 
     </div>
-
-    <div class="row">
-
-      <div class="col-md" id="fileslist">
-
-      </div>
-
-      <div class="col-md">
-
-      </div>
-
-    </div>
-
-  </div>
-
 
   </body>
 

@@ -1,20 +1,24 @@
 <html>
-<body>
-<br>
-<table id="table_fileslist">
-<tr id="tr_header">
-<th>Datei</th>
-<th>Größe</th>
-<th>Typ</th>
-<th>Datum</th>
-<th>Aktionen</th>
-</tr>
+	<body>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Datei</th>
+						<th>Größe</th>
+						<th>Typ</th>
+						<th>Datum</th>
+						<th>Aktionen</th>
+					</tr>
+				</thead>
 
-<tr>
-<td><button type="button" onclick="changedirectory('..');">..</button></td>
-</tr>
+				<tbody>
+					<tr>
+						<td>
+							<button type="button" onclick="changedirectory('..');">..</button>
+						</td>
+					</tr>
 
-</body>
 <?php
 
  include(__DIR__.'/../lib/FtpClient.php');
@@ -50,8 +54,8 @@ foreach($items as $dateiordner){
 }
 
 foreach ($ordners as $ordner){
-echo "<tr id=\"tr_directory\">";
-echo "<td><button id=\"test\" type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
+echo "<tr>";
+echo "<td><button type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
@@ -77,6 +81,8 @@ echo "<td><button id=\"delete_button\" type=\"button\" onclick=\"deletefile('$vo
 echo "</tr>";
 }
 
+echo "</tbody>";
+
 echo "</table>";
 
 //Danke an: http://jeffreysambells.com/2012/10/25/human-readable-filesize-php
@@ -87,4 +93,7 @@ function humanfilesize($bytes, $decimals = 2) {
 }
 
 ?>
+
+	</body>
+
 </html>

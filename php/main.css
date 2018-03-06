@@ -1,15 +1,1 @@
-#test {
-  background: none!important;
-  border: none;
-  padding: 0!important;
 
-  font-family: helvetica, arial, sans-serif;
-  text-decoration: underline;
-  color: #000000
-  cursor: pointer;
-}
-
-#delete_button {
-  background-color: black;
-  color: white;
-}
