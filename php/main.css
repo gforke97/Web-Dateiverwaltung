@@ -2,12 +2,13 @@
   background: linear-gradient("#666666, #b3b3b3")
 }
 
+/*
 #tr_directory button{
   background: none!important;
   border: none;
   padding: 0!important;
 
-  /*Styling Link*/
+  Styling Link
   font-family: helvetica, arial, sans-serif;
   text-decoration: underline;
   color: #000000
@@ -17,15 +18,14 @@
 #tr_directory button.hover {
   color: #0000ff
 }
+*/
+#test {
+  background: none!important;
+  border: none;
+  padding: 0!important;
 
-#delete_button{
-  background: black;
-  border: 2px;
-  padding: 10px;
-
-  /*Styling Link*/
   font-family: helvetica, arial, sans-serif;
   text-decoration: underline;
-  color: #ffffff
+  color: #000000
   cursor: pointer;
 }
