@@ -123,12 +123,15 @@ $_SESSION['aktordner'] = "";
 
         <div class="col-md">
 
-          <button type="button" onclick="showfiles()">Aktualisieren</button>
-		  
-		  <form id="file-form" action="handler.php" method="POST">
-		  <input type="file" id="file-select" name="photos[]" multiple/>
-          <button type="submit" id="upload-button">Upload</button>
-		  </form>
+          <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
+
+		      <form class="form-control" id="file-form" action="handler.php" method="POST">
+
+		      <input type="file" id="file-select" name="photos[]" multiple/>
+
+          <button class="btn" type="submit" id="upload-button">Upload</button>
+
+          </form>
 
         </div>
 

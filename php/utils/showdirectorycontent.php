@@ -18,7 +18,7 @@
 						<tbody>
 							<tr>
 								<td>
-									<button type="button" onclick="changedirectory('..');">..</button>
+									<button class="btn" type="button" onclick="changedirectory('..');">..</button>
 								</td>
 							</tr>
 
@@ -58,7 +58,7 @@ foreach($items as $dateiordner){
 
 foreach ($ordners as $ordner){
 echo "<tr>";
-echo "<td><button type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
+echo "<td><button class=\"btn\" type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
@@ -68,19 +68,19 @@ if ($aktordner == '') {
 else {
 	$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
 }
-echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
+echo "<td><button class=\"btn\" type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
 echo "</tr>";
 }
 
 foreach ($dateien as $datei){
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $datei[name];
 echo "<tr id=\"tr_directory\">";
-echo "<td><button type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
+echo "<td><button class=\"btn\" type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
 $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
-echo "<td><button id=\"delete_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
+echo "<td><button class=\"btn\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
 echo "</tr>";
 }
 
