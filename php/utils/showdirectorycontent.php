@@ -1,23 +1,26 @@
 <html>
 	<body>
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Datei</th>
-						<th>Größe</th>
-						<th>Typ</th>
-						<th>Datum</th>
-						<th>Aktionen</th>
-					</tr>
-				</thead>
 
-				<tbody>
-					<tr>
-						<td>
-							<button type="button" onclick="changedirectory('..');">..</button>
-						</td>
-					</tr>
+		<div class="container">
+			<div class="row">
+				<div class="col-md table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Datei</th>
+								<th>Größe</th>
+								<th>Typ</th>
+								<th>Datum</th>
+								<th>Aktionen</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>
+									<button type="button" onclick="changedirectory('..');">..</button>
+								</td>
+							</tr>
 
 <?php
 
@@ -93,6 +96,12 @@ function humanfilesize($bytes, $decimals = 2) {
 }
 
 ?>
+
+				</div>
+
+			</div>
+
+		</div>
 
 	</body>
 
