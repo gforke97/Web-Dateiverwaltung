@@ -17,3 +17,15 @@
 #tr_directory button.hover {
   color: #0000ff
 }
+
+#delete_button{
+  background: black;
+  border: none;
+  padding: 0!important;
+
+  /*Styling Link*/
+  font-family: helvetica, arial, sans-serif;
+  text-decoration: underline;
+  color: #ffffff
+  cursor: pointer;
+}

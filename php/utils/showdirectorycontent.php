@@ -73,7 +73,7 @@ $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
-echo "<td><button type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
+echo "<td><button id=\"delete_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
 echo "</tr>";
 }
 
