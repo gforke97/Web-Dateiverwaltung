@@ -1,8 +1,8 @@
 <html>
 <body>
 <br>
-<table class="table_fileslist">
-<tr id="table_header">
+<table id="table_fileslist">
+<tr id="tr_header">
 <th>Datei</th>
 <th>Größe</th>
 <th>Typ</th>
