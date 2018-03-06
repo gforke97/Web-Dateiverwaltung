@@ -1,4 +1,9 @@
-#fileslist button{
+.jumbotron {
+  background: linear-gradient("#666666, #b3b3b3")
+}
+
+
+#fileslist button {
   background: none!important;
   border: none;
   padding: 0!important;
@@ -10,6 +15,6 @@
   cursor: pointer;
 }
 
-#fileslist button.hover{
+#fileslist button.hover {
   color: #0000ff
 }
