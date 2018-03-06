@@ -3,7 +3,9 @@ $vollerpfad=$_GET['vollerpfad'];
  
  include('createconnection.php');
 
- $ftp->rmdir($vollerpfad, true);
+ if (($ftp->rmdir($vollerpfad, true)) == FALSE) {
+ http_response_code(404);
+ }
 
  $ftp->close();
  

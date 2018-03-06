@@ -6,14 +6,18 @@ $ordner=$_GET['ordner'];
  $ftp->chdir($_SESSION['aktordner']);
  
  if ($ordner=="..") {
-   $ftp->cdup(); 
+ if (($ftp->cdup()) == FALSE) {
+ http_response_code(404);
+ }
  }
  else {
- $ftp->chdir($ordner);
+ if (($ftp->chdir($ordner)) == FALSE) {
+ http_response_code(404);
+ }
  }
   
  $_SESSION['aktordner'] = $ftp->pwd();
  
-  $ftp->close();
+ $ftp->close();
  
 ?>

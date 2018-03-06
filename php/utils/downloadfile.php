@@ -22,6 +22,9 @@ $datei=$_GET['datei'];
     header('Content-Length: ' . filesize($downloadpfad));
     readfile($downloadpfad);
     exit;
-}
+  }
+  else {
+  http_response_code(404);
+  }
  
 ?>
