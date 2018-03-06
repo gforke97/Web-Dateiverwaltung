@@ -55,11 +55,13 @@ echo "<td><button type=\"button\" onclick=\"changedirectory('$ordner[name]');\">
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
-if ($aktordner != '') {
-	$aktordner = $aktordner . '/';
+if ($aktordner == '') {
+	$vollerpfad = $ordner[name] . DIRECTORY_SEPARATOR;
 }
-$vollerpfad = $aktordner . $ordner[name];
-echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">Löschen</button></td>";
+else {
+	$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
+}
+echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
 echo "</tr>";
 }
 
