@@ -23,7 +23,7 @@
 
 <?php
 
- include('createconnection.php');
+include('createconnection.php');
 
  $ftp->chdir($_SESSION['aktordner']);
  $aktordner = $_SESSION['aktordner'];

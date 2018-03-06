@@ -159,6 +159,11 @@ $_SESSION['aktordner'] = "";
 			         <button class="btn" type="submit" id="upload-button">Upload</button>
 
 			    </form>
+				
+			<form id="neuerordner" action="utils/createdirectory.php" method="post">
+			 <input id="neuerordner-select" type="text" name="ordner" />
+			 <input type="submit" />
+			</form>
 
 
         </div>
@@ -184,6 +189,10 @@ $_SESSION['aktordner'] = "";
     </div>
 
 	<script>
+	dateihochladenhandler();
+	ordnererstellenhandler();
+	
+	function dateihochladenhandler() {
 	var form = document.getElementById("file-form");
 	var fileSelect = document.getElementById('file-select');
 	var uploadButton = document.getElementById('upload-button');
@@ -228,10 +237,44 @@ $_SESSION['aktordner'] = "";
     alert('Fehler beim Dateiupload!');
 	}
 	};
-
 	xmlhttp.send(formData);
-
 	}
+	}
+	
+	
+	function ordnererstellenhandler() {
+	var form = document.getElementById("neuerordner");
+	var neuerordnerselect = document.getElementById("neuerordner-select");
+
+	form.onsubmit = function(event) {
+	event.preventDefault();
+
+    var formData = new FormData();
+	formData.append('ordnername', neuerordnerselect.value);
+
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	var url = "utils/createdirectory.php";
+	xmlhttp.open("POST", url, true);
+
+	// Set up a handler for when the request finishes.
+	xmlhttp.onload = function () {
+	if (xmlhttp.status === 200) {
+	showfiles();
+	} else {
+    alert('Fehler beim Erstellen des Ordners!');
+	}
+	};
+	xmlhttp.send(formData);
+	}
+	}
+
+	
 	</script>
 
 
