@@ -20,8 +20,8 @@
 
 #delete_button{
   background: black;
-  border: none;
-  padding: 0!important;
+  border: 2px;
+  padding: 10px;
 
   /*Styling Link*/
   font-family: helvetica, arial, sans-serif;
