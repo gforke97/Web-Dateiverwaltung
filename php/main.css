@@ -3,7 +3,7 @@
 }
 
 
-#fileslist directory_button {
+#fileslist .directory_button {
   background: none!important;
   border: none;
   padding: 0!important;
@@ -15,6 +15,6 @@
   cursor: pointer;
 }
 
-#fileslist button.hover {
+#fileslist .directory_button.hover {
   color: #0000ff
 }
