@@ -16,23 +16,23 @@
 
 </body>
 <?php
-	
+
  include(__DIR__.'/../lib/FtpClient.php');
  include(__DIR__.'/../lib/FtpException.php');
  include(__DIR__.'/../lib/FtpWrapper.php');
- 
+
  session_start();
  $ftp = new \FtpClient\FtpClient();
  $ftp->connect($_SESSION['ip']);
  $ftp->login($_SESSION['user'], $_SESSION['pass']);
- 
+
  $ftp->chdir($_SESSION['aktordner']);
  $aktordner = $_SESSION['aktordner'];
-  
+
  $items = $ftp->scanDir(false);
- 
+
  $ftp->close();
- 
+
  //print_r ($items['file#/putty.zip']);
  global $dateien, $ordners;
  //global $ordner = array();
@@ -61,7 +61,7 @@ if ($aktordner == '') {
 else {
 	$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
 }
-echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
+echo "<td><button class=\"directory_button\" type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
 echo "</tr>";
 }
 
@@ -73,7 +73,7 @@ $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
-echo "<td><button type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
+echo "<td><button class=\"delete_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
 echo "</tr>";
 }
 
