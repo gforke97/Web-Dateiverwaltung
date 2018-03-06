@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
 
-PACKAGES="apache2 php7.0"
+PACKAGES="apache2 php unzip libapache2-mod-php"
 
 func_selectDistro() {
-     DISTRO= cat /etc/*-release | grep "^ID_LIKE=" | grep -E -o "[a-z]\w+"
+     DISTRO=$(cat /etc/*-release | grep "^ID_LIKE=" | grep -E -o "[a-z]\w+")
 }
 
 func_root() {
@@ -62,5 +62,8 @@ func_selectPackageManger
 
 continue through installations
 
-wget /tmp/ https://github.com/gforke97/Web-Dateiverwaltung/archive/master.zip
-unzip /tmp/master.zip /var/www/html
+wget -O /tmp/master.zip https://github.com/gforke97/Web-Dateiverwaltung/archive/master.zip
+unzip -o /tmp/master.zip -d /tmp/web-dateiverwaltung/
+mv -f /tmp/web-dateiverwaltung/*/* /var/www/html/
+rm -rf /tmp/master.zip
+rm -rf /tmp/web-dateiverwaltung/
