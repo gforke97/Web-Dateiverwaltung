@@ -29,3 +29,7 @@
   color: #000000
   cursor: pointer;
 }
+
+#delete_button {
+  color: blue;
+}
