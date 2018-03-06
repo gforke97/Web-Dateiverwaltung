@@ -105,7 +105,7 @@
 
   <body>
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron jumbotron-fluid text-center">
 
       <h1>Web Dateiverwaltung PHP</h1>
 
@@ -120,13 +120,37 @@ $_SESSION['user'] = "test";
 $_SESSION['pass'] = "test";
 $_SESSION['aktordner'] = "";
 
-echo "<button type=\"button\" onclick=\"showfiles()\">Aktualisieren</button>";
-
-echo "<div class=\"col-sm-6\" id=\"fileslist\">";
-
-echo "</div>";
-
 ?>
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-md">
+
+        <button type="button" onclick="showfiles()">Aktualisieren</button>
+
+      </div>
+
+      <div class="col-md">
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md" id="fileslist">
+
+      </div>
+
+      <div class="col-md">
+
+      </div>
+
+    </div>
+
+  </div>
 
 
   </body>
