@@ -51,7 +51,7 @@ foreach($items as $dateiordner){
 
 foreach ($ordners as $ordner){
 echo "<tr id=\"tr_directory\">";
-echo "<td><button type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
+echo "<td><button id=\"test\" type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
