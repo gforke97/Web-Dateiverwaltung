@@ -3,14 +3,13 @@ $altername=$_GET['altername'];
 $neuername=$_GET['neuername'];
  
  include('createconnection.php');
+ include('nameisvalid.php');
  
  $aktordner = $_SESSION['aktordner'];
  $volleralterpfad = $aktordner . DIRECTORY_SEPARATOR . $altername;
  $vollerneuerpfad = $aktordner . DIRECTORY_SEPARATOR . $neuername;
- print"$volleralterpfad";
- print"$vollerneuerpfad";
  
- if (($ftp->rename($volleralterpfad, $vollerneuerpfad)) == FALSE) {
+ if ((!isValid($neuername))||(($ftp->rename($volleralterpfad, $vollerneuerpfad)) == FALSE)) {
   http_response_code(404);
  }
  
