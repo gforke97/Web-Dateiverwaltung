@@ -65,9 +65,16 @@
         // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-	var url = "utils/deletefile.php?vollerpfad=" + str;
-	xmlhttp.open("GET",url, false);
+    if (confirm('Möchten Sie die Datei wirklich löschen?')) {
+    var url = "utils/deletefile.php?vollerpfad=" + str;
+    xmlhttp.open("GET",url, false);
     xmlhttp.send();
+
+    showfiles();
+    } else {
+    // nichts
+    }
+
 
 	showfiles();
 	}
@@ -80,9 +87,15 @@
         // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-	var url = "utils/deletedirectory.php?vollerpfad=" + str;
-	xmlhttp.open("GET",url, false);
+    if (confirm('öchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
+    var url = "utils/deletedirectory.php?vollerpfad=" + str;
+    xmlhttp.open("GET",url, false);
     xmlhttp.send();
+
+    showfiles();
+    } else {
+    // nichts
+   }
 
 	showfiles();
 	}
