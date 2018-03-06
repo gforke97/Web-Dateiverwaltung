@@ -85,14 +85,21 @@
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     
-	var neuername = prompt("Bitte einen neuen Dateinamen angeben.");
+	xmlhttp.onload = function () {
+	if (xmlhttp.status === 200) {
+    // Datei umbenannt.
+	showfiles();
+	} else {
+    alert('Fehler beim Umbenennen!');
+	}
+	};
+	
+	var neuername = prompt("Bitte einen neuen Dateinamen angeben.", str);
 	
 	if (neuername != null) {
 	var url = "utils/renamefile.php?altername=" + str + "&neuername=" + neuername;
     xmlhttp.open("GET", url, false);
     xmlhttp.send();
-	
-    showfiles();
 	}
     }
 

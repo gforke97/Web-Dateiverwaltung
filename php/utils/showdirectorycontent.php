@@ -23,14 +23,7 @@
 
 <?php
 
- include(__DIR__.'/../lib/FtpClient.php');
- include(__DIR__.'/../lib/FtpException.php');
- include(__DIR__.'/../lib/FtpWrapper.php');
-
- session_start();
- $ftp = new \FtpClient\FtpClient();
- $ftp->connect($_SESSION['ip']);
- $ftp->login($_SESSION['user'], $_SESSION['pass']);
+ include('createconnection.php');
 
  $ftp->chdir($_SESSION['aktordner']);
  $aktordner = $_SESSION['aktordner'];
