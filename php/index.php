@@ -74,9 +74,6 @@
     } else {
     // nichts
     }
-
-
-	showfiles();
 	}
 
 	function deletedirectory(str) {
@@ -96,9 +93,7 @@
     } else {
     // nichts
    }
-
-	showfiles();
-	}
+}
 
 	</script>
   </head>
@@ -129,6 +124,11 @@ $_SESSION['aktordner'] = "";
         <div class="col-md">
 
           <button type="button" onclick="showfiles()">Aktualisieren</button>
+		  
+		  <form id="file-form" action="handler.php" method="POST">
+		  <input type="file" id="file-select" name="photos[]" multiple/>
+          <button type="submit" id="upload-button">Upload</button>
+		  </form>
 
         </div>
 
