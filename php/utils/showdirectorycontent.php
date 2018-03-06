@@ -14,9 +14,7 @@
 
 				<tbody>
 					<tr>
-						<td>
-							<button type="button" onclick="changedirectory('..');">..</button>
-						</td>
+						<button type="button" onclick="changedirectory('..');">..</button>
 					</tr>
 
 <?php
