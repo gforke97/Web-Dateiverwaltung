@@ -1,8 +1,8 @@
 <html>
 <body>
 <br>
-<table>
-<tr>
+<table class="table_fileslist">
+<tr id="table_header">
 <th>Datei</th>
 <th>Größe</th>
 <th>Typ</th>
@@ -50,7 +50,7 @@ foreach($items as $dateiordner){
 }
 
 foreach ($ordners as $ordner){
-echo "<tr class=\"directory_table\">";
+echo "<tr id=\"tr_directory\">";
 echo "<td><button type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
 echo "<td></td>";
 echo "<td>Ordner</td>";
