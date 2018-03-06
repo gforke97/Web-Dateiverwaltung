@@ -76,6 +76,26 @@
     }
 	}
 
+    function renamefile(str) {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (confirm('Möchten Sie die Datei wirklich umbenennen?')) {
+    var url = "utils/renamefile.php?altername=" + str + "&neuername=" + "test.ini";
+    xmlhttp.open("GET",url, false);
+    xmlhttp.send();
+
+    alert (url);
+    showfiles();
+    } else {
+    // nichts
+    }
+    }
+
 	function deletedirectory(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -84,7 +104,7 @@
         // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    if (confirm('öchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
+    if (confirm('Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
     var url = "utils/deletedirectory.php?vollerpfad=" + str;
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
@@ -95,7 +115,7 @@
    }
 }
 
-	</script>
+</script>
   </head>
 
   <body>
@@ -125,13 +145,13 @@ $_SESSION['aktordner'] = "";
 
           <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
 
-		      <form class="form-control" id="file-form" action="handler.php" method="POST">
+			    <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
 
-		      <input type="file" id="file-select" name="photos[]" multiple/>
+			         <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
 
-          <button class="btn" type="submit" id="upload-button">Upload</button>
+			         <button class="btn" type="submit" id="upload-button">Upload</button>
 
-          </form>
+			    </form>
 
         </div>
 
@@ -154,6 +174,59 @@ $_SESSION['aktordner'] = "";
       </div>
 
     </div>
+
+	<script>
+	var form = document.getElementById("file-form");
+	var fileSelect = document.getElementById('file-select');
+	var uploadButton = document.getElementById('upload-button');
+
+	form.onsubmit = function(event) {
+	event.preventDefault();
+
+	// Update button text.
+	uploadButton.innerHTML = 'Uploading...';
+
+	// Get the selected files from the input.
+	var files = fileSelect.files;
+
+	// Create a new FormData object.
+	var formData = new FormData();
+
+	// Loop through each of the selected files.
+	for (var i = 0; i < files.length; i++) {
+	var file = files[i];
+
+	// Add the file to the request.
+	formData.append('dateien[]', file, file.name);
+	}
+
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	var url = "utils/uploadfile.php";
+	xmlhttp.open("POST", url, true);
+
+	// Set up a handler for when the request finishes.
+	xmlhttp.onload = function () {
+	if (xmlhttp.status === 200) {
+    // File(s) uploaded.
+    uploadButton.innerHTML = 'Upload';
+	showfiles();
+	} else {
+    alert('Fehler beim Dateiupload!');
+	}
+	};
+
+	xmlhttp.send(formData);
+
+	}
+	</script>
+
+
 
   </body>
 

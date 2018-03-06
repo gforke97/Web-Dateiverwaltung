@@ -1,6 +1,5 @@
 <html>
 	<body>
-
 		<div class="container">
 			<div class="row">
 				<div class="col-md table-responsive">
@@ -62,13 +61,11 @@ echo "<td><button class=\"btn\" type=\"button\" onclick=\"changedirectory('$ordn
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
-if ($aktordner == '') {
-	$vollerpfad = $ordner[name] . DIRECTORY_SEPARATOR;
-}
-else {
-	$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
-}
+$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
+
 echo "<td><button class=\"btn\" type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
+
+echo "<td><button class=\"btn\" type=\"button\" onclick=\"renamefile('$vollerpfad');\">Umbenennen</button></td>";
 echo "</tr>";
 }
 
@@ -80,7 +77,11 @@ $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
+
 echo "<td><button class=\"btn\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
+
+echo "<td><button class=\"btn\" type=\"button\" onclick=\"renamefile('$datei[name]');\">Umbenennen</button></td>";
+
 echo "</tr>";
 }
 
