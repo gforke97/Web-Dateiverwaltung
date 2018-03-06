@@ -1,3 +1,10 @@
+<html>
+<head>
+<script>
+</script>
+</head>
+<body>
+
 <?php
 $vollerpfad=$_GET['vollerpfad'];
  
@@ -9,9 +16,12 @@ $vollerpfad=$_GET['vollerpfad'];
  $ftp = new \FtpClient\FtpClient();
  $ftp->connect($_SESSION['ip']);
  $ftp->login($_SESSION['user'], $_SESSION['pass']);
- 
+
  $ftp->rmdir($vollerpfad, true);
- 
+
  $ftp->close();
  
 ?>
+
+</body>
+</html>
