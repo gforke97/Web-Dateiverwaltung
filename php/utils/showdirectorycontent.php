@@ -62,7 +62,7 @@ echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
-echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
+echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">Löschen</button></td>";
 echo "<td><button id=\"rename_button\" type=\"button\" onclick=\"renamefile('$vollerpfad');\">Umbenennen</button></td>";
 echo "</tr>";
 }

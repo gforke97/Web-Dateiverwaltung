@@ -84,16 +84,16 @@
         // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    if (confirm('Möchten Sie die Datei wirklich umbenennen?')) {
-    var url = "utils/renamefile.php?altername=" + str + "&neuername=" + "test.ini";
-    xmlhttp.open("GET",url, false);
+    
+	var neuername = prompt("Bitte einen neuen Dateinamen angeben.");
+	
+	if (neuername != null) {
+	var url = "utils/renamefile.php?altername=" + str + "&neuername=" + neuername;
+    xmlhttp.open("GET", url, false);
     xmlhttp.send();
-
-    alert (url);
+	
     showfiles();
-    } else {
-    // nichts
-    }
+	}
     }
 
 	function deletedirectory(str) {
@@ -152,6 +152,7 @@ $_SESSION['aktordner'] = "";
 			         <button class="btn" type="submit" id="upload-button">Upload</button>
 
 			    </form>
+
 
         </div>
 
