@@ -76,6 +76,26 @@
     }
 	}
 
+    function renamefile(str) {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (confirm('Möchten Sie die Datei wirklich umbenennen?')) {
+    var url = "utils/renamefile.php?altername=" + str + "&neuername=" + "test.ini";
+    xmlhttp.open("GET",url, false);
+    xmlhttp.send();
+
+    alert (url);
+    showfiles();
+    } else {
+    // nichts
+    }
+    }
+
 	function deletedirectory(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -126,7 +146,7 @@ $_SESSION['aktordner'] = "";
           <button type="button" onclick="showfiles()">Aktualisieren</button>
 		  
 			<form id="file-form" action="utils/fileupload.php" method="POST">
-			<input type="file" id="file-select" name="photos[]" multiple/>
+			<input type="file" id="file-select" name="dateien[]" multiple/>
 			<button type="submit" id="upload-button">Upload</button>
 			</form>
 
@@ -192,6 +212,7 @@ $_SESSION['aktordner'] = "";
 	if (xmlhttp.status === 200) {
     // File(s) uploaded.
     uploadButton.innerHTML = 'Upload';
+	showfiles();
 	} else {
     alert('Fehler beim Dateiupload!');
 	}

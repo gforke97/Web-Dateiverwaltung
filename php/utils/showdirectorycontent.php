@@ -1,6 +1,5 @@
 <html>
 	<body>
-
 		<div class="container">
 			<div class="row">
 				<div class="col-md table-responsive">
@@ -69,6 +68,7 @@ else {
 	$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
 }
 echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
+echo "<td><button id=\"rename_button\" type=\"button\" onclick=\"renamefile('$vollerpfad');\">Umbenennen</button></td>";
 echo "</tr>";
 }
 
@@ -81,6 +81,7 @@ echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
 echo "<td><button id=\"delete_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
+echo "<td><button id=\"rename_button\" type=\"button\" onclick=\"renamefile('$datei[name]');\">Umbenennen</button></td>";
 echo "</tr>";
 }
 
