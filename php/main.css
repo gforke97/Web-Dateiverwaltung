@@ -1,0 +1,15 @@
+#fileslist button{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+
+  /*Styling Link*/
+  font-family: helvetica, arial, sans-serif;
+  text-decoration: underline;
+  color: #000000
+  cursor: pointer;
+}
+
+#fileslist button.hover{
+  color: #0000ff
+}

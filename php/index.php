@@ -7,7 +7,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
+
+    <!--Main CSS-->
+    <link rel="stylesheet" type="text/css" href="main.css">
+
 	<script>
 	function showfiles() {
     if (window.XMLHttpRequest) {
@@ -23,9 +26,9 @@
         }
     };
     xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE", false);
-    xmlhttp.send();   
+    xmlhttp.send();
 	}
-	
+
 	function changedirectory(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -37,10 +40,10 @@
 	var url = "utils/changedirectory.php?ordner=" + str;
 	xmlhttp.open("GET",url, false);
     xmlhttp.send();
-	
+
 	showfiles();
 	}
-	
+
     function downloadfile(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -50,10 +53,10 @@
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
 	var url = "utils/downloadfile.php?datei=" + str;
-	
+
 	window.open(url);
 	}
-	
+
 	function deletefile(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -65,10 +68,10 @@
 	var url = "utils/deletefile.php?vollerpfad=" + str;
 	xmlhttp.open("GET",url, false);
     xmlhttp.send();
-	
+
 	showfiles();
 	}
-	
+
 	function deletedirectory(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -80,10 +83,10 @@
 	var url = "utils/deletedirectory.php?vollerpfad=" + str;
 	xmlhttp.open("GET",url, false);
     xmlhttp.send();
-	
+
 	showfiles();
 	}
-	
+
 	</script>
   </head>
 
@@ -106,7 +109,8 @@ $_SESSION['aktordner'] = "";
 
 echo "<button type=\"button\" onclick=\"showfiles()\">Aktualisieren</button>";
 
-echo "<div id=\"fileslist\">";
+echo "<div class=\"col-sm-6\" id=\"fileslist\">";
+
 echo "</div>";
 
 ?>
