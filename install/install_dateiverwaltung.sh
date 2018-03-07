@@ -4,7 +4,10 @@
 PACKAGES="apache2 php unzip libapache2-mod-php"
 
 func_selectDistro() {
-     DISTRO=$(cat /etc/*-release | grep "^ID_LIKE=" | grep -E -o "[a-z]\w+")
+    if [ -z $(cat /etc/*-release | grep "^ID_LIKE=")]
+        then DISTRO=$(cat /etc/*-release | grep "^ID=" | grep -E -o "[a-z]\w+")
+        else DISTRO=$(cat /etc/*-release | grep "^ID_LIKE=" | grep -E -o "[a-z]\w+")
+    fi
 }
 
 func_root() {
@@ -23,10 +26,6 @@ func_selectPackageManger() {
            CentOS)
                  PACKAGEMANAGER="yum"
                  func_yum
-                 ;;
-           RHEL)
-                 PACKAGEMANAGER="up2date"
-                 func_up2date
                  ;;
            arch)
                  PACKAGEMANGER="pacman"
@@ -52,9 +51,6 @@ func_pacman() {
            pacmam -S $PACKAGES
 }
 
-func_up2date() {
-           up2date -i
-}
 
 func_root
 func_selectDistro
