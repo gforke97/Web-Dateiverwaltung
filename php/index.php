@@ -84,7 +84,7 @@
         // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    
+
 	xmlhttp.onload = function () {
 	if (xmlhttp.status === 200) {
     // Datei umbenannt.
@@ -93,9 +93,9 @@
     alert('Fehler beim Umbenennen!');
 	}
 	};
-	
+
 	var neuername = prompt("Bitte einen neuen Dateinamen angeben.", str);
-	
+
 	if (neuername != null) {
 	var url = "utils/renamefile.php?altername=" + str + "&neuername=" + neuername;
     xmlhttp.open("GET", url, false);
@@ -156,14 +156,14 @@ $_SESSION['aktordner'] = "";
 
           <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
 
-			    <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
+			    <form class="form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
 			         <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
 
 			         <button class="btn" type="submit" id="upload-button">Upload</button>
 
 			    </form>
-				
+
 			<form id="neuerordner" action="utils/createdirectory.php" method="post">
 			 <input id="neuerordner-select" type="text" name="ordner" />
 			 <input type="submit" />
@@ -195,7 +195,7 @@ $_SESSION['aktordner'] = "";
 	<script>
 	dateihochladenhandler();
 	ordnererstellenhandler();
-	
+
 	function dateihochladenhandler() {
 	var form = document.getElementById("file-form");
 	var fileSelect = document.getElementById('file-select');
@@ -244,8 +244,8 @@ $_SESSION['aktordner'] = "";
 	xmlhttp.send(formData);
 	}
 	}
-	
-	
+
+
 	function ordnererstellenhandler() {
 	var form = document.getElementById("neuerordner");
 	var neuerordnerselect = document.getElementById("neuerordner-select");
@@ -278,7 +278,7 @@ $_SESSION['aktordner'] = "";
 	}
 	}
 
-	
+
 	</script>
 
 
