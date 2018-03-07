@@ -1,1 +1,3 @@
-
+.container-fluid .row #action-bar-top {
+  display: inline-grid;
+}

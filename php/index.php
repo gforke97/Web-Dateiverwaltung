@@ -152,7 +152,7 @@ $_SESSION['aktordner'] = "";
 
       <div class="row">
 
-        <div class="col-md">
+        <div class="col-md" id="action-bar-top">
 
           <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
 
