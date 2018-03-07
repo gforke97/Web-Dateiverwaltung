@@ -55,7 +55,7 @@ echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
-echo "<td><button class=\"btn\" type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">Löschen <img class=\"img\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
+echo "<td><button class=\"btn\" type=\"button\" onclick=\"deletedirectory('$vollerpfad');\"><img class=\"img-thumbnail\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
 echo "<button class=\"btn\" type=\"button\" onclick=\"renamefile('$ordner[name]');\">Umbenennen</button></td>";
 echo "</tr>";
 }
