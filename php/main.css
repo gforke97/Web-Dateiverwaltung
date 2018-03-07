@@ -1,3 +1,7 @@
 #action-bar-top {
   display: inline;
 }
+
+#thumbnail-pic {
+  height: 1em;
+}
