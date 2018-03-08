@@ -68,8 +68,8 @@ $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
-echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button>";
-echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$datei[name]');\">Umbenennen</button></td>";
+echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button></td>";
 echo "</tr>";
 }
 
