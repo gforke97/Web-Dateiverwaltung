@@ -164,23 +164,17 @@ $_SESSION['aktordner'] = "";
 
 			    </form>
 
-			<form id="neuerordner" action="utils/createdirectory.php" method="post">
-			 <input id="neuerordner-select" type="text" name="ordner" />
-			 <input type="submit" />
-			</form>
+			    <form id="neuerordner" action="utils/createdirectory.php" method="post">
 
+               <input id="neuerordner-select" type="text" name="ordner" />
+
+               <input type="submit" />
+
+          </form>
 
         </div>
 
         <div class="col-sm">
-
-        </div>
-
-      </div>
-
-      <div class="row">
-
-        <div class="col-sm" id="fileslist">
 
           <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
 
@@ -192,24 +186,25 @@ $_SESSION['aktordner'] = "";
 
           </form>
 
+          <form id="neuerordner" action="utils/createdirectory.php" method="post">
+
+			         <input id="neuerordner-select" type="text" name="ordner" />
+
+			         <input type="submit" />
+			    </form>
+
         </div>
 
-        <div class="col-sm">
+      </div>
 
-			       <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
+      <div class="row">
 
-             <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
+        <div class="col-sm" id="fileslist">
 
-			         <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
+        </div>
 
-			         <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
+        <div class="col-sm" id="fileslist2">
 
-			       </form>
-
-			<form id="neuerordner" action="utils/createdirectory.php" method="post">
-			 <input id="neuerordner-select" type="text" name="ordner" />
-			 <input type="submit" />
-			</form>
         </div>
 
       </div>
