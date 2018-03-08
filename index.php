@@ -236,9 +236,11 @@
 
   <body>
 
-    <div class="jumbotron jumbotron-fluid text-center">
+    <div class="jumbotron">
 
-      <h1>Web Dateiverwaltung PHP</h1>
+      <h1 class="display-4">Web Dateiverwaltung PHP</h1>
+
+      <p class="lead">Einfache Dateiverwaltung zwischen zwei FTP Servern</p>
 
     </div>
 
