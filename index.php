@@ -268,13 +268,13 @@ $_SESSION['aktordner2'] = "";
 
             <span class="input-group-btn">
 
-              <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
+              <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
 
 			        <form class="form-inline" id="file-form" action="utils/fileupload.php" method="POST">
 
-			             <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
+			             <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
 
-			             <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
+			             <button class="btn" type="submit" id="upload-button">Upload</button>
 
 			        </form>
 
@@ -302,7 +302,7 @@ $_SESSION['aktordner2'] = "";
 
               <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
-                <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
+                <input class="input-group btn" type="file" id="file-select" name="dateien[]" multiple/>
 
                 <button class="btn" type="submit" id="upload-button">Upload</button>
 
@@ -312,17 +312,13 @@ $_SESSION['aktordner2'] = "";
 
           </div>
 
-          <div class="input-group">
-
             <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
 
 			         <input id="neuerordner-select" type="text" name="ordner" />
 
-			         <input type="submit" />
+			         <input class="btn" type="submit" />
 
 			      </form>
-
-          </div>
 
         </div>
 
