@@ -286,7 +286,7 @@ $_SESSION['aktordner2'] = "";
 
             <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
-            <input class="input-group-append btn btn-default" id="submit-button" type="submit" />
+            <input class="input-group-append btn" id="submit-button" type="submit" />
 
           </form>
 
@@ -316,7 +316,7 @@ $_SESSION['aktordner2'] = "";
 
 			         <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
-			         <input class="input-group-append btn btn-default" id="submit-button" type="submit" />
+			         <input class="input-group-append btn" id="submit-button" type="submit" />
 
 			      </form>
 
