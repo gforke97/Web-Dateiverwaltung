@@ -7,14 +7,10 @@
   display: inline;
 }
 
-#action-bar-top {
-  display: inline;
-}
-
 #thumbnail-pic {
   max-height: 1em;
 }
 
-/*#file-form {
-  display: inline;
-}*/
+#force-inline {
+  display: inline-block;
+}
