@@ -12,5 +12,5 @@
 
 #thumbnail-pic {
   max-height: 1em;
-  display: block;
+  display: inline;
 }
