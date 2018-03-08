@@ -276,7 +276,7 @@ $_SESSION['aktordner2'] = "";
 
 			      <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
-              <label class="btn btn-default btn-file">Browse
+              <label class="btn btn-default btn-file">Dateien auswählen
 
 			           <input style="display: none;" type="file" id="file-select" name="dateien[]" multiple/>
 
