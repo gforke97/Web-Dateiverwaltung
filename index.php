@@ -266,7 +266,7 @@ $_SESSION['aktordner2'] = "";
 
           <div class="input-group">
 
-            <span class="input-group-prepend">
+            <span class="input-group-btn">
 
               <button class="btn btn-default" type="button" onclick="showfiles()">Aktualisieren</button>
 
