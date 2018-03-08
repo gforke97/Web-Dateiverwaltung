@@ -280,13 +280,13 @@ $_SESSION['aktordner2'] = "";
 
             </span>
 
-			        <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
+			      <form class="form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
 
-                <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
+              <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
-                <input class="btn btn-default" type="submit" />
+              <input class="btn btn-default" type="submit" />
 
-              </form>
+            </form>
 
           </div>
 
