@@ -270,7 +270,7 @@ $_SESSION['aktordner2'] = "";
 
               <button class="btn btn-default" type="button" onclick="showfiles()">Aktualisieren</button>
 
-			        <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
+			        <form class="form-inline form-control pull-right" id="file-form" action="utils/fileupload.php" method="POST">
 
 			             <input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
 
@@ -286,7 +286,7 @@ $_SESSION['aktordner2'] = "";
 
             <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
-            <input class="btn btn-default" type="submit" />
+            <input class="btn btn-default pull-right" id="submit-button" type="submit" />
 
           </form>
 
@@ -304,7 +304,7 @@ $_SESSION['aktordner2'] = "";
 
                 <input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
 
-                <button class="btn" type="submit" id="upload-button">Upload</button>
+                <button class="btn btn-default" type="submit" id="upload-button">Upload</button>
 
               </form>
 
@@ -316,7 +316,7 @@ $_SESSION['aktordner2'] = "";
 
 			         <input class="input-group-btn" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
-			         <input class="btn btn-default" type="submit" />
+			         <input class="btn btn-default pull-right" id="submit-button" type="submit" />
 
 			      </form>
 
