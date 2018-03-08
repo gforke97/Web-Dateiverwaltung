@@ -264,11 +264,13 @@ $_SESSION['aktordner2'] = "";
 
         <div class="col-sm" id="action-bar-top">
 
-          <div class="input-group-prepend">
+          <div class="input-group">
 
-            <span class="input-group-btn" id="force-inline">
+            <span class="input-group-prepend">
 
               <button class="btn btn-default" type="button" onclick="showfiles()">Aktualisieren</button>
+
+            </span>
 
 			        <form class="form-inline form-control pull-right" id="file-form" action="utils/fileupload.php" method="POST">
 
@@ -277,8 +279,6 @@ $_SESSION['aktordner2'] = "";
 			             <button class="btn btn-default" type="submit" id="upload-button">Upload</button>
 
 			        </form>
-
-            </span>
 
           </div>
 
