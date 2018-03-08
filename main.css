@@ -4,6 +4,7 @@
 
 .image_button {
   background: transparent;
+  display: inline;
 }
 
 #action-bar-top {
@@ -12,5 +13,4 @@
 
 #thumbnail-pic {
   max-height: 1em;
-  display: inline;
 }
