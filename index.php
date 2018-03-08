@@ -73,7 +73,7 @@
 	xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-	showfiles();
+	showfiles2();
 	}
 
     function downloadfile(str) {
@@ -134,7 +134,7 @@
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-    showfiles();
+    showfiles2();
     } else {
     // nichts
     }
@@ -179,7 +179,7 @@
 	xmlhttp.onload = function () {
 	if (xmlhttp.status === 200) {
     // Datei umbenannt.
-	showfiles();
+	showfiles2();
 	} else {
     alert('Fehler beim Umbenennen!');
 	}
@@ -225,7 +225,7 @@
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-    showfiles();
+    showfiles2();
     } else {
     // nichts
    }
