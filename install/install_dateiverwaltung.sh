@@ -45,7 +45,8 @@ continue through installations
 
 wget -O /tmp/master.zip https://github.com/gforke97/Web-Dateiverwaltung/archive/master.zip
 unzip -o /tmp/master.zip -d /tmp/web-dateiverwaltung/
-mv -f /var/www/html/index.html /var/www/html/index.html.old
+mkdir /var/www/html/backup-$(date -I)/
+mv -f /var/www/html/* /var/www/html/backup-$(date -I)/
 mv -f /tmp/web-dateiverwaltung/*/* /var/www/html/
 rm -rf /tmp/master.zip
 rm -rf /tmp/web-dateiverwaltung/
