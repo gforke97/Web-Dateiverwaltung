@@ -300,7 +300,7 @@ $_SESSION['aktordner2'] = "";
 
               <div class="input-group" aria-describedby="basic-addon1">
 
-                <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
+                <input class="input-group" id="neuerordner-select" placeholder=" Neuer Ordner Name" type="text" name="ordner" />
 
                 <input class="input-group-append btn" id="submit-button" type="submit" />
 
@@ -344,7 +344,7 @@ $_SESSION['aktordner2'] = "";
 
               <div class="input-group" aria-describedby="basic-addon2">
 
-                <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
+                <input class="input-group" id="neuerordner-select" placeholder=" Neuer Ordner Name" type="text" name="ordner" />
 
 			          <input class="input-group-append btn" id="submit-button" type="submit" />
 
