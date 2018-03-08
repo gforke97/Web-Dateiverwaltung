@@ -73,7 +73,7 @@
 	xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-	showfiles2();
+	showfiles();
 	}
 
     function downloadfile(str) {
@@ -134,7 +134,7 @@
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-    showfiles2();
+    showfiles();
     } else {
     // nichts
     }
@@ -179,7 +179,7 @@
 	xmlhttp.onload = function () {
 	if (xmlhttp.status === 200) {
     // Datei umbenannt.
-	showfiles2();
+	showfiles();
 	} else {
     alert('Fehler beim Umbenennen!');
 	}
@@ -225,7 +225,7 @@
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-    showfiles2();
+    showfiles();
     } else {
     // nichts
    }
@@ -270,7 +270,7 @@ $_SESSION['aktordner2'] = "";
 
               <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
 
-			        <form class="form-control" id="file-form" action="utils/fileupload.php" method="POST">
+			        <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
 			             <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
 
@@ -278,15 +278,15 @@ $_SESSION['aktordner2'] = "";
 
 			        </form>
 
+			        <form id="neuerordner" action="utils/createdirectory.php" method="post">
+
+                <input class="input-group" id="neuerordner-select" type="text" name="ordner" />
+
+                <input class="btn" type="submit" />
+
+              </form>
+
             </span>
-
-			      <form id="neuerordner" action="utils/createdirectory.php" method="post">
-
-              <input class="input-group" id="neuerordner-select" type="text" name="ordner" />
-
-              <input class="btn" type="submit" />
-
-            </form>
 
           </div>
 
