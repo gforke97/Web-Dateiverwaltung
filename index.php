@@ -290,7 +290,7 @@ $_SESSION['aktordner2'] = "";
 
             <span class="input-group-btn">
 
-              <button class="btn btn-default" type="button" onclick="showfiles2()">Aktualisieren</button>
+              <button class="btn btn-default" id="force-inline" type="button" onclick="showfiles2()">Aktualisieren</button>
 
               <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 

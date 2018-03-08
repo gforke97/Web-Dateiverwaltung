@@ -14,3 +14,7 @@
 #thumbnail-pic {
   max-height: 1em;
 }
+
+#force-inline {
+  display: inline-block;
+}
