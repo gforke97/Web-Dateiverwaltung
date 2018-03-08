@@ -60,7 +60,7 @@
 
 	showfiles();
 	}
-	
+
 	function changedirectory2(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -88,7 +88,7 @@
 
 	window.open(url);
 	}
-	
+
 	function downloadfile2(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -120,7 +120,7 @@
     // nichts
     }
 	}
-	
+
 	function deletefile2(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -166,7 +166,7 @@
     xmlhttp.send();
 	}
     }
-	
+
 	function renamefile2(str) {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -284,15 +284,15 @@ $_SESSION['aktordner2'] = "";
 
         </div>
 
-        <div class="col-sm">
+        <div class="col-sm" id="action-bar-top">
 
-          <button class="btn" id="action-bar-top" type="button" onclick="showfiles2()">Aktualisieren</button>
+          <button class="btn" type="button" onclick="showfiles2()">Aktualisieren</button>
 
           <form class="form-inline" id="file-form" action="utils/fileupload.php" method="POST">
 
-              <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
+              <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
 
-              <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
+              <button class="btn" type="submit" id="upload-button">Upload</button>
 
           </form>
 
