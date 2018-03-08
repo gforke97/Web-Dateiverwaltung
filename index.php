@@ -282,9 +282,9 @@ $_SESSION['aktordner2'] = "";
 
 			      <form id="neuerordner" action="utils/createdirectory.php" method="post">
 
-              <input id="neuerordner-select" type="text" name="ordner" />
+              <input class="input-group" id="neuerordner-select" type="text" name="ordner" />
 
-              <input type="submit" />
+              <input class="btn" type="submit" />
 
             </form>
 
