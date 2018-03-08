@@ -2,11 +2,9 @@
   padding-right: 2em;
 }
 
-
 .image_button {
   background: transparent;
 }
-
 
 #action-bar-top {
   display: inline;
@@ -14,4 +12,5 @@
 
 #thumbnail-pic {
   max-height: 1em;
+  display: block;
 }

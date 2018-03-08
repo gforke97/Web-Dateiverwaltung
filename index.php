@@ -152,15 +152,15 @@ $_SESSION['aktordner'] = "";
 
       <div class="row">
 
-        <div class="col-md" id="action-bar-top">
+        <div class="col-md">
 
-          <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
+          <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
 
 			    <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
 
-			         <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
+			         <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
 
-			         <button class="btn" type="submit" id="upload-button">Upload</button>
+			         <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
 
 			    </form>
 
