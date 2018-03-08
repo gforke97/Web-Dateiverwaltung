@@ -40,6 +40,7 @@ esac
 }
 
 func_apt-get() {
+           apt-get update
            apt-get install -y ${PACKAGES}
 }
 
