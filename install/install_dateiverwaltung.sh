@@ -40,11 +40,11 @@ esac
 }
 
 func_apt-get() {
-           apt-get install -y $PACKAGES
+           apt-get install -y ${PACKAGES}
 }
 
 func_yum() {
-           yum install $PACKAGES
+           yum install ${PACKAGES}
 }
 
 func_pacman() {

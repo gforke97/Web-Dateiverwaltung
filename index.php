@@ -1,22 +1,7 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-
-=======
->>>>>>> pr/3
 <html>
 
   <head>
 
-<<<<<<< HEAD
-  </head>
-
-    <title>Dateiverwaltung</title>
-
-  <body>
-
-    <?php include ("php/index.php"); ?>
-
-=======
     <!--Bootstrap Framework-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -298,7 +283,6 @@ $_SESSION['aktordner'] = "";
 
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
->>>>>>> pr/3
   </body>
 
 </html>
