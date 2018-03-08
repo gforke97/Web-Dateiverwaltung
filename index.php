@@ -42,7 +42,7 @@
             document.getElementById("fileslist2").innerHTML = this.responseText;
         }
     };
-    xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE", false);
+    xmlhttp.open("GET","utils/showdirectorycontent2.php?aufruf=TRUE", false);
     xmlhttp.send();
 	}
 
@@ -55,6 +55,21 @@
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
 	var url = "utils/changedirectory.php?ordner=" + str;
+	xmlhttp.open("GET",url, false);
+    xmlhttp.send();
+
+	showfiles();
+	}
+	
+	function changedirectory2(str) {
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	var url = "utils/changedirectory2.php?ordner=" + str;
 	xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
@@ -73,6 +88,19 @@
 
 	window.open(url);
 	}
+	
+	function downloadfile2(str) {
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	var url = "utils/downloadfile2.php?datei=" + str;
+
+	window.open(url);
+	}
 
 	function deletefile(str) {
 	if (window.XMLHttpRequest) {
@@ -84,6 +112,25 @@
     }
     if (confirm('Möchten Sie die Datei wirklich löschen?')) {
     var url = "utils/deletefile.php?vollerpfad=" + str;
+    xmlhttp.open("GET",url, false);
+    xmlhttp.send();
+
+    showfiles();
+    } else {
+    // nichts
+    }
+	}
+	
+	function deletefile2(str) {
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (confirm('Möchten Sie die Datei wirklich löschen?')) {
+    var url = "utils/deletefile2.php?vollerpfad=" + str;
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
@@ -119,6 +166,33 @@
     xmlhttp.send();
 	}
     }
+	
+	function renamefile2(str) {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+	xmlhttp.onload = function () {
+	if (xmlhttp.status === 200) {
+    // Datei umbenannt.
+	showfiles();
+	} else {
+    alert('Fehler beim Umbenennen!');
+	}
+	};
+
+	var neuername = prompt("Bitte einen neuen Dateinamen angeben.", str);
+
+	if (neuername != null) {
+	var url = "utils/renamefile2.php?altername=" + str + "&neuername=" + neuername;
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();
+	}
+    }
 
 	function deletedirectory(str) {
 	if (window.XMLHttpRequest) {
@@ -130,6 +204,24 @@
     }
     if (confirm('Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
     var url = "utils/deletedirectory.php?vollerpfad=" + str;
+    xmlhttp.open("GET",url, false);
+    xmlhttp.send();
+
+    showfiles();
+    } else {
+    // nichts
+   }
+}
+	function deletedirectory2(str) {
+	if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (confirm('Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
+    var url = "utils/deletedirectory2.php?vollerpfad=" + str;
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
@@ -158,6 +250,7 @@ $_SESSION['ip'] = "192.168.0.16";
 $_SESSION['user'] = "test";
 $_SESSION['pass'] = "test";
 $_SESSION['aktordner'] = "";
+$_SESSION['aktordner2'] = "";
 #$_SESSION['ip'] = "ftp.dlptest.com";
 #$_SESSION['user'] = "dlpuser@dlptest.com";
 #$_SESSION['pass'] = "eiTqR7EMZD5zy7M";
