@@ -286,15 +286,23 @@ $_SESSION['aktordner2'] = "";
 
         <div class="col-sm" id="action-bar-top">
 
-          <button class="btn" type="button" onclick="showfiles2()">Aktualisieren</button>
+          <div class="input-group">
 
-          <form class="form-inline" id="file-form" action="utils/fileupload.php" method="POST">
+            <span class="input-group-btn">
 
-              <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
+              <button class="btn btn-default" type="button" onclick="showfiles2()">Aktualisieren</button>
 
-              <button class="btn" type="submit" id="upload-button">Upload</button>
+              <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
-          </form>
+                <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
+
+                <button class="btn" type="submit" id="upload-button">Upload</button>
+
+              </form>
+
+            </span>
+
+          </div>
 
           <form class="form-inline" id="neuerordner" action="utils/createdirectory.php" method="post">
 
