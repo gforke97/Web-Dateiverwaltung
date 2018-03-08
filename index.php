@@ -306,9 +306,9 @@ $_SESSION['aktordner2'] = "";
 
         </div>
 
-        <div class="col-sm" id="action-bar-top">
+        <div class="col-sm">
 
-          <div class="input-group">
+          <div class="input-group" style="margin-bottom: 1em;">
 
             <span class="input-group-prepend">
 
@@ -326,13 +326,25 @@ $_SESSION['aktordner2'] = "";
 
           </div>
 
-            <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
+          <div class="input-group">
 
-               <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
+            <div class="input-group-prepend">
 
-			         <input class="input-group-append btn" id="submit-button" type="submit" />
+              <span class="input-group-text" id="basic-addon2">Neuen Ordner erstellen</span>
 
-			      </form>
+            </div>
+
+            <div class="input-group" aria-describedby="basic-addon2">
+
+                <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
+
+                  <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
+
+			            <input class="input-group-append btn" id="submit-button" type="submit" />
+
+			          </form>
+
+            </div>
 
         </div>
 
