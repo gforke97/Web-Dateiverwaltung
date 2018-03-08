@@ -264,23 +264,31 @@ $_SESSION['aktordner2'] = "";
 
         <div class="col-sm">
 
-          <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
+          <div class="input-group">
 
-			    <form class="form-inline" id="file-form" action="utils/fileupload.php" method="POST">
+            <span class="input-group-btn">
 
-			         <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
+              <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
 
-			         <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
+			        <form class="form-inline" id="file-form" action="utils/fileupload.php" method="POST">
 
-			    </form>
+			             <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
 
-			    <form id="neuerordner" action="utils/createdirectory.php" method="post">
+			             <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
 
-               <input id="neuerordner-select" type="text" name="ordner" />
+			        </form>
 
-               <input type="submit" />
+            </span>
 
-          </form>
+			      <form id="neuerordner" action="utils/createdirectory.php" method="post">
+
+              <input id="neuerordner-select" type="text" name="ordner" />
+
+              <input type="submit" />
+
+            </form>
+
+          </div>
 
         </div>
 
@@ -304,13 +312,17 @@ $_SESSION['aktordner2'] = "";
 
           </div>
 
-          <form class="form-inline" id="neuerordner" action="utils/createdirectory.php" method="post">
+          <div class="input-group">
+
+            <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
 
 			         <input id="neuerordner-select" type="text" name="ordner" />
 
 			         <input type="submit" />
 
-			    </form>
+			      </form>
+
+          </div>
 
         </div>
 
