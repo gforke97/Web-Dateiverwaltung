@@ -28,6 +28,23 @@
     xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE", false);
     xmlhttp.send();
 	}
+	
+	function showfiles2() {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("fileslist2").innerHTML = this.responseText;
+        }
+    };
+    xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE", false);
+    xmlhttp.send();
+	}
 
 	function changedirectory(str) {
 	if (window.XMLHttpRequest) {
@@ -176,7 +193,7 @@ $_SESSION['aktordner'] = "";
 
         <div class="col-sm">
 
-          <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
+          <button class="btn" id="action-bar-top" type="button" onclick="showfiles2()">Aktualisieren</button>
 
           <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
 
