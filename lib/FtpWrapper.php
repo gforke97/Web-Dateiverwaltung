@@ -10,7 +10,6 @@
  * @copyright Nicolas Tallefourtane http://nicolab.net
  */
 namespace FtpClient;
-
 /**
  * Wrap the PHP FTP functions
  *
@@ -57,7 +56,6 @@ class FtpWrapper
      * @var resource
      */
     protected $conn;
-
     /**
      * Constructor.
      *
@@ -67,7 +65,6 @@ class FtpWrapper
     {
         $this->conn = &$connection;
     }
-
     /**
      * Forward the method call to FTP functions
      *
@@ -79,15 +76,12 @@ class FtpWrapper
     public function __call($function, array $arguments)
     {
         $function = 'ftp_' . $function;
-
         if (function_exists($function)) {
             array_unshift($arguments, $this->conn);
             return call_user_func_array($function, $arguments);
         }
-
         throw new FtpException("{$function} is not a valid FTP function");
     }
-
     /**
      * Opens a FTP connection
      *
@@ -100,7 +94,6 @@ class FtpWrapper
     {
         return ftp_connect($host, $port, $timeout);
     }
-
     /**
      * Opens a Secure SSL-FTP connection
      * @param  string   $host

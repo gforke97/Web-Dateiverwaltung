@@ -1,6 +1,5 @@
 <html>
 	<body>
-
 		<div class="container">
 			<div class="row">
 				<div class="col-md table-responsive">
@@ -18,20 +17,13 @@
 						<tbody>
 							<tr>
 								<td>
-									<button type="button" onclick="changedirectory('..');">..</button>
+									<button class="btn" type="button" onclick="changedirectory('..');">..</button>
 								</td>
 							</tr>
 
 <?php
 
- include(__DIR__.'/../lib/FtpClient.php');
- include(__DIR__.'/../lib/FtpException.php');
- include(__DIR__.'/../lib/FtpWrapper.php');
-
- session_start();
- $ftp = new \FtpClient\FtpClient();
- $ftp->connect($_SESSION['ip']);
- $ftp->login($_SESSION['user'], $_SESSION['pass']);
+include('createconnection.php');
 
  $ftp->chdir($_SESSION['aktordner']);
  $aktordner = $_SESSION['aktordner'];
@@ -58,29 +50,26 @@ foreach($items as $dateiordner){
 
 foreach ($ordners as $ordner){
 echo "<tr>";
-echo "<td><button type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
+echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
-if ($aktordner == '') {
-	$vollerpfad = $ordner[name] . DIRECTORY_SEPARATOR;
-}
-else {
-	$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
-}
-echo "<td><button type=\"button\" onclick=\"deletedirectory('$vollerpfad');\">$vollerpfad</button></td>";
+$vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
+echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletedirectory('$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$ordner[name]');\">Umbenennen</button></td>";
 echo "</tr>";
 }
 
 foreach ($dateien as $datei){
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $datei[name];
 echo "<tr id=\"tr_directory\">";
-echo "<td><button type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
+echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
 $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
-echo "<td><button id=\"delete_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button></td>";
+echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\">Löschen</button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$datei[name]');\">Umbenennen</button></td>";
 echo "</tr>";
 }
 

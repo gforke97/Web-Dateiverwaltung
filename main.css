@@ -1,49 +1,17 @@
-.jumbotron {
-  background-color: black;
-  font-family: helvetica, sans-serif;
-  color: white;
-}
-
-#inputpath1 {
-  padding-left: 2em;
-}
-
-#inputpath2 {
+.button_row {
   padding-right: 2em;
 }
 
-@media (min-width=576px) {
-  #inputpath2 {
-    padding-left: 2em;
-  }
+
+.image_button {
+  background: transparent;
 }
 
-@media (min-width=576px) {
-  #inputpath1 {
-    padding-right: 2em;
-  }
+
+#action-bar-top {
+  display: inline;
 }
 
-#connectftp1 {
-  padding-left: 3em;
-}
-
-#connectftp2 {
-  padding-right: 3em;
-}
-
-#connectftp1 input {
-  margin-bottom: 0.5em;
-}
-
-#connectftp2 input {
-  margin-bottom: 0.5em;
-}
-
-#connectftp1 button {
-  border-radius: 8px;
-}
-
-#connectftp2 button {
-  border-radius: 8px;
+#thumbnail-pic {
+  max-height: 1em;
 }
