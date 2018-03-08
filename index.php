@@ -238,7 +238,7 @@
 
     <div class="jumbotron">
 
-      <h1 class="display-4">Web Dateiverwaltung PHP</h1>
+      <h1 class="display-4">Web Dateiverwaltung</h1>
 
       <p class="lead">Einfache Dateiverwaltung zwischen zwei FTP Servern</p>
 
@@ -276,7 +276,11 @@ $_SESSION['aktordner2'] = "";
 
 			      <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
-			           <input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
+              <label class="btn btn-default btn-file">Browse
+
+			           <input style="display: none;" type="file" id="file-select" name="dateien[]" multiple/>
+
+              </label>
 
 			           <button class="btn btn-default" type="submit" id="upload-button">Upload</button>
 
