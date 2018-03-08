@@ -152,7 +152,7 @@ $_SESSION['aktordner'] = "";
 
       <div class="row">
 
-        <div class="col-md">
+        <div class="col-sm">
 
           <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
 
@@ -172,7 +172,7 @@ $_SESSION['aktordner'] = "";
 
         </div>
 
-        <div class="col-md">
+        <div class="col-sm">
 
         </div>
 
@@ -180,11 +180,11 @@ $_SESSION['aktordner'] = "";
 
       <div class="row">
 
-        <div class="col-md" id="fileslist">
+        <div class="col-sm" id="fileslist">
 
         </div>
 
-        <div class="col-md">
+        <div class="col-sm">
 
         </div>
 

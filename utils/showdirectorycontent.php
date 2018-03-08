@@ -2,7 +2,7 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-md table-responsive">
+				<div class="col-sm table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
