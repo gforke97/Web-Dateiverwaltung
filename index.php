@@ -262,25 +262,25 @@ $_SESSION['aktordner2'] = "";
 
       <div class="row">
 
-        <div class="col-sm">
+        <div class="col-sm" id="action-bar-top">
 
           <div class="input-group">
 
             <span class="input-group-btn">
 
-              <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
+              <button class="btn btn-default" type="button" onclick="showfiles()">Aktualisieren</button>
 
 			        <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
-			             <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
+			             <input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
 
 			             <button class="btn" type="submit" id="upload-button">Upload</button>
 
 			        </form>
 
-			        <form id="neuerordner" action="utils/createdirectory.php" method="post">
+			        <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
 
-                <input class="input-group" id="neuerordner-select" type="text" name="ordner" />
+                <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
                 <input class="btn" type="submit" />
 
@@ -302,7 +302,7 @@ $_SESSION['aktordner2'] = "";
 
               <form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
 
-                <input class="input-group btn" type="file" id="file-select" name="dateien[]" multiple/>
+                <input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
 
                 <button class="btn" type="submit" id="upload-button">Upload</button>
 
@@ -314,9 +314,9 @@ $_SESSION['aktordner2'] = "";
 
             <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
 
-			         <input id="neuerordner-select" type="text" name="ordner" />
+			         <input class="input-group-btn" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
-			         <input class="btn" type="submit" />
+			         <input class="btn btn-default" type="submit" />
 
 			      </form>
 
@@ -331,6 +331,26 @@ $_SESSION['aktordner2'] = "";
         </div>
 
         <div class="col-sm" id="fileslist2">
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="col-sm">
+
+        <div class="panel-footer">
+
+          <p>Icons made by
+            <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a>
+             from
+             <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+              is licensed by
+              <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+          </p>
 
         </div>
 
@@ -426,9 +446,6 @@ $_SESSION['aktordner2'] = "";
 
 
 	</script>
-
-
-    <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
   </body>
 
