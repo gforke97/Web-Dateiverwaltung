@@ -28,7 +28,7 @@
     xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE", false);
     xmlhttp.send();
 	}
-	
+
 	function showfiles2() {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -173,7 +173,7 @@ $_SESSION['aktordner'] = "";
 
           <button class="btn" id="action-bar-top" type="button" onclick="showfiles()">Aktualisieren</button>
 
-			    <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
+			    <form class="form-inline" id="file-form" action="utils/fileupload.php" method="POST">
 
 			         <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
 
@@ -195,19 +195,20 @@ $_SESSION['aktordner'] = "";
 
           <button class="btn" id="action-bar-top" type="button" onclick="showfiles2()">Aktualisieren</button>
 
-          <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
+          <form class="form-inline" id="file-form" action="utils/fileupload.php" method="POST">
 
-            <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
+              <input class="input-group" id="action-bar-top" type="file" id="file-select" name="dateien[]" multiple/>
 
-            <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
+              <button class="btn" id="action-bar-top" type="submit" id="upload-button">Upload</button>
 
           </form>
 
-          <form id="neuerordner" action="utils/createdirectory.php" method="post">
+          <form class="form-inline" id="neuerordner" action="utils/createdirectory.php" method="post">
 
 			         <input id="neuerordner-select" type="text" name="ordner" />
 
 			         <input type="submit" />
+
 			    </form>
 
         </div>
@@ -318,7 +319,8 @@ $_SESSION['aktordner'] = "";
 	</script>
 
 
-<div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
   </body>
 
 </html>
