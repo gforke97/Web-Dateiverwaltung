@@ -274,19 +274,19 @@ $_SESSION['aktordner2'] = "";
 
 			             <input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
 
-			             <button class="btn" type="submit" id="upload-button">Upload</button>
+			             <button class="btn btn-default" type="submit" id="upload-button">Upload</button>
 
 			        </form>
+
+            </span>
 
 			        <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
 
                 <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
-                <input class="btn" type="submit" />
+                <input class="btn btn-default" type="submit" />
 
               </form>
-
-            </span>
 
           </div>
 
