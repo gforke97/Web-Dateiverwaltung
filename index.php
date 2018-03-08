@@ -262,9 +262,9 @@ $_SESSION['aktordner2'] = "";
 
       <div class="row">
 
-        <div class="col-sm" id="action-bar-top">
+        <div class="col-sm">
 
-          <div class="input-group">
+          <div class="input-group" style="margin-bottom: 1em;">
 
             <span class="input-group-prepend">
 
@@ -288,11 +288,11 @@ $_SESSION['aktordner2'] = "";
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text" id="basic-addon3">Neuen Ordner erstellen</span>
+                <span class="input-group-text" id="basic-addon1">Neuen Ordner erstellen</span>
 
               </div>
 
-              <div class="input-group" aria-describedby="basic-addon3">
+              <div class="input-group" aria-describedby="basic-addon1">
 
                 <input class="input-group" id="neuerordner-select" placeholder="Neuer Ordner Name" type="text" name="ordner" />
 
