@@ -264,7 +264,7 @@ $_SESSION['aktordner2'] = "";
 
         <div class="col-sm" id="action-bar-top">
 
-          <div class="input-group">
+          <div class="input-group-prepend">
 
             <span class="input-group-btn" id="force-inline">
 
