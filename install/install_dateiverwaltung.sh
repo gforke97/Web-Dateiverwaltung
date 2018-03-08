@@ -23,14 +23,6 @@ func_selectPackageManger() {
                  PACKAGEMANGER="apt-get"
                  func_apt-get
                  ;;
-           CentOS)
-                 PACKAGEMANAGER="yum"
-                 func_yum
-                 ;;
-           arch)
-                 PACKAGEMANGER="pacman"
-                 func_pacman
-                 ;;
            *)
                  echo "ERROR: Your Distribution is not supported by this installation script! Please use a supported distribution"
                  exit 2
@@ -42,14 +34,6 @@ esac
 func_apt-get() {
            apt-get update
            apt-get install -y ${PACKAGES}
-}
-
-func_yum() {
-           yum install ${PACKAGES}
-}
-
-func_pacman() {
-           pacmam -S $PACKAGES
 }
 
 
