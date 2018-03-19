@@ -1,10 +1,23 @@
 <?php
+$session=$_GET['session'];
 //kompletter Pfad
 $datei=$_GET['datei'];
  
  include('createconnection.php');
  
- $ftp->chdir($_SESSION['aktordner1']);
+  switch($session) {
+	case 1:
+		$ftp->chdir($_SESSION['aktordner1']);
+		break;
+	
+	case 2:
+		$ftp->chdir($_SESSION['aktordner2']);
+		break;
+		
+	default:
+		http_response_code(404);
+		exit(1);
+ }
  
  $downloadpfad = DIRECTORY_SEPARATOR . "tmp" . DIRECTORY_SEPARATOR . $datei;
  

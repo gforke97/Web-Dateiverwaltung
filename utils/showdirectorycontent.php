@@ -86,7 +86,7 @@ echo "</tr>";
 foreach ($dateien as $datei){
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $datei[name];
 echo "<tr id=\"tr_directory\">";
-echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
+echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"downloadfile('$session','$datei[name]');\">$datei[name]</button></td>";
 $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";

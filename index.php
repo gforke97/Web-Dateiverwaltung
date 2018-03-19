@@ -42,15 +42,9 @@
 	showfiles(session);
 	}
 
-    function downloadfile(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/downloadfile.php?datei=" + str;
+    function downloadfile(session, str) {
+	
+	var url = "utils/downloadfile.php?session=" + session + "&datei=" + str;
 
 	window.open(url);
 	}
