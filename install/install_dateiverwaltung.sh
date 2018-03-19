@@ -43,6 +43,10 @@ func_selectPackageManger
 
 continue through installations
 
+phppath=$(find /etc -name php.ini | grep apache2)
+cp $phppath $phppath.old
+sed -i 's/post_max_size =.*/post_max_size = 10G/g' $phppath
+sed -i 's/upload_max_filesize =.*/upload_max_filesize = 10G/g' $phppath
 wget -O /tmp/master.zip https://github.com/gforke97/Web-Dateiverwaltung/archive/master.zip
 unzip -o /tmp/master.zip -d /tmp/web-dateiverwaltung/
 mkdir /var/www/html/backup-$(date -I)/
