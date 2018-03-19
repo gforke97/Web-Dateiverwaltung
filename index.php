@@ -21,9 +21,22 @@
 			<p class="lead">Einfache Dateiverwaltung zwischen zwei FTP Servern</p>
 		</div>
 		
-		<div class="row">
-			<div class="col">
+		<div class="row">				
+			<div class="col" id="ftpfenster1">
 				<div class="col-sm">
+					<form class="form-inline form-control" id="login1" action="utils/login.php" method="post">
+						<div class="input-group">
+							<div class="input-group" aria-describedby="basic-addon1">
+								<input class="form-control" id="server1" placeholder="Serveradresse" type="text" name="server" />
+								<input class="form-control" id="nutzer1" placeholder="Nutzer" type="text" name="nutzer" />
+								<input class="form-control" id="passwort1" placeholder="Passwort" type="text" name="passwort" />
+								<button class="input-group-append btn" type="submit">Login</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="col-sm" id="upload1" style="visibility:hidden">
 					<div class="input-group" style="margin-bottom: 1em;">
 						<span class="input-group-prepend">
 							<button class="btn btn-default" type="button" onclick="showfiles(1)">Aktualisieren</button>
@@ -37,12 +50,26 @@
 					</div>
 				</div>
 				
-				<div class="col-sm" id="fileslist1">
+				<div class="col-" id="fileslist1" style="visibility:hidden">
 				</div>		
 			</div>	
 			
-			<div class="col">
+			
+			<div class="col" id="ftpfenster2">
 				<div class="col-sm">
+					<form class="form-inline form-control" id="login2" action="utils/login.php" method="post">
+						<div class="input-group">
+							<div class="input-group" aria-describedby="basic-addon1">
+								<input class="form-control" id="server2" placeholder="Serveradresse" type="text" name="server" />
+								<input class="form-control" id="nutzer2" placeholder="Nutzer" type="text" name="nutzer" />
+								<input class="form-control" id="passwort2" placeholder="Passwort" type="text" name="passwort" />
+								<button class="input-group-append btn" type="submit">Login</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="col-sm" id="upload2" style="visibility:hidden">
 					<div class="input-group" style="margin-bottom: 1em;">
 						<span class="input-group-prepend">
 							<button class="btn btn-default" id="force-inline" type="button" onclick="showfiles(2)">Aktualisieren</button>
@@ -56,7 +83,7 @@
 					</div>
 				</div>
 				
-				<div class="col-sm" id="fileslist2">
+				<div class="col-" id="fileslist2" style="visibility:hidden">
 				</div>
 			</div>
 		</div>
@@ -74,25 +101,18 @@
 				</p>
 			</div>
 		</div>
-		
-		<?php	
-			session_start();
-			$_SESSION['ip1'] = "192.168.0.16";
-			$_SESSION['user1'] = "test";
-			$_SESSION['pass1'] = "test";
-			$_SESSION['aktordner1'] = "";
 			
-			$_SESSION['ip2'] = "192.168.0.16";
-			$_SESSION['user2'] = "test";
-			$_SESSION['pass2'] = "test";
-			$_SESSION['aktordner2'] = "";
-		?>
-		
 		<script type="text/javascript">
 			var script = document.createElement('script');
 			script.setAttribute('src', 'fileuploadhandler.js');
 			script.setAttribute('type', 'text/javascript');
 			document.getElementsByTagName('head')[0].appendChild(script);
+			
+			var script = document.createElement('script');
+			script.setAttribute('src', 'loginhandler.js');
+			script.setAttribute('type', 'text/javascript');
+			document.getElementsByTagName('head')[0].appendChild(script);
+
 		</script>
 		
 	</body>
