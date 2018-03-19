@@ -1,7 +1,5 @@
 <html>
-	
 	<head>
-		
 		<meta charset="utf-8">
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
@@ -15,22 +13,67 @@
 		
 		<!--Main CSS-->
 		<link rel="stylesheet" type="text/css" href="main.css">
-		
 	</head>
 	
-	<body>
-		
+	<body>	
 		<div class="jumbotron">
-			
 			<h1 class="display-4">Web Dateiverwaltung</h1>
-			
 			<p class="lead">Einfache Dateiverwaltung zwischen zwei FTP Servern</p>
-			
 		</div>
 		
-		<?php
-			chdir(__DIR__);
+		<div class="row">
+			<div class="col">
+				<div class="col-sm">
+					<div class="input-group" style="margin-bottom: 1em;">
+						<span class="input-group-prepend">
+							<button class="btn btn-default" type="button" onclick="showfiles(1)">Aktualisieren</button>
+						</span>
+						<form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
+							<label class="btn btn-default btn-file">Dateien auswählen
+								<input style="display: none;" type="file" id="file-select" name="dateien[]" multiple/>
+							</label>
+							<button class="btn btn-default" type="submit" id="upload-button">Upload</button>
+						</form>
+					</div>
+				</div>
+				
+				<div class="col-sm" id="fileslist1">
+				</div>		
+			</div>	
 			
+			<div class="col">
+				<div class="col-sm">
+					<div class="input-group" style="margin-bottom: 1em;">
+						<span class="input-group-prepend">
+							<button class="btn btn-default" id="force-inline" type="button" onclick="showfiles(2)">Aktualisieren</button>
+						</span>
+						<form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
+							<input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
+							<button class="btn btn-default" type="submit" id="upload-button">Upload</button>
+						</form>
+					</div>
+				</div>
+				
+				<div class="col-sm" id="fileslist2">
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="col-sm">
+			
+			<div class="panel-footer">
+				<p>Icons made by
+					<a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a>
+					from
+					<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+					is licensed by
+					<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+				</p>
+			</div>
+		</div>
+		
+		<?php	
 			session_start();
 			$_SESSION['ip1'] = "192.168.0.16";
 			$_SESSION['user1'] = "test";
@@ -41,145 +84,58 @@
 			$_SESSION['user2'] = "test";
 			$_SESSION['pass2'] = "test";
 			$_SESSION['aktordner2'] = "";
-			
 		?>
 		
-		<div class="container-fluid">
+		<script>
+			dateihochladenhandler();
 			
-			<div class="row">
+			function dateihochladenhandler() {
+				var form = document.getElementById("file-form");
+				var fileSelect = document.getElementById('file-select');
+				var uploadButton = document.getElementById('upload-button');
 				
-				<div class="col-sm">
+				form.onsubmit = function(event) {
+					event.preventDefault();
 					
-					<div class="input-group" style="margin-bottom: 1em;">
-						
-						<span class="input-group-prepend">
-							
-							<button class="btn btn-default" type="button" onclick="showfiles(1)">Aktualisieren</button>
-							
-						</span>
-						
-						<form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
-							
-							<label class="btn btn-default btn-file">Dateien auswählen
-								
-								<input style="display: none;" type="file" id="file-select" name="dateien[]" multiple/>
-								
-							</label>
-							
-							<button class="btn btn-default" type="submit" id="upload-button">Upload</button>
-							
-						</form>
-						
-					</div>
+					// Update button text.
+					uploadButton.innerHTML = 'Uploading...';
 					
-				</div>
-				
-				<div class="col-sm">
+					// Get the selected files from the input.
+					var files = fileSelect.files;
 					
-					<div class="input-group" style="margin-bottom: 1em;">
-						
-						<span class="input-group-prepend">
-							
-							<button class="btn btn-default" id="force-inline" type="button" onclick="showfiles(2)">Aktualisieren</button>
-							
-						</span>
-						
-						<form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
-							
-							<input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
-							
-							<button class="btn btn-default" type="submit" id="upload-button">Upload</button>
-							
-						</form>
-						
-					</div>
+					// Create a new FormData object.
+					var formData = new FormData();
 					
-				</div>
-				
-				<div class="row">
-					
-					<div class="col-sm" id="fileslist1">
+					// Loop through each of the selected files.
+					for (var i = 0; i < files.length; i++) {
+						var file = files[i];
 						
-					</div>
-					
-					<div class="col-sm" id="fileslist2">
-						
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			<div class="container-fluid">
-				
-				<div class="col-sm">
-					
-					<div class="panel-footer">
-						
-						<p>Icons made by
-							<a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a>
-							from
-							<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-							is licensed by
-							<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
-						</p>
-						
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			<script>
-				dateihochladenhandler();
-				
-				function dateihochladenhandler() {
-					var form = document.getElementById("file-form");
-					var fileSelect = document.getElementById('file-select');
-					var uploadButton = document.getElementById('upload-button');
-					
-					form.onsubmit = function(event) {
-						event.preventDefault();
-						
-						// Update button text.
-						uploadButton.innerHTML = 'Uploading...';
-						
-						// Get the selected files from the input.
-						var files = fileSelect.files;
-						
-						// Create a new FormData object.
-						var formData = new FormData();
-						
-						// Loop through each of the selected files.
-						for (var i = 0; i < files.length; i++) {
-							var file = files[i];
-							
-							// Add the file to the request.
-							formData.append('dateien[]', file, file.name);
-						}
-						
-						if (window.XMLHttpRequest) {
-							// code for IE7+, Firefox, Chrome, Opera, Safari
-							xmlhttp = new XMLHttpRequest();
-							} else {
-							// code for IE6, IE5
-							xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-						}
-						var url = "utils/uploadfile.php";
-						xmlhttp.open("POST", url, true);
-						
-						// Set up a handler for when the request finishes.
-						xmlhttp.onload = function () {
-							if (xmlhttp.status === 200) {
-								// File(s) uploaded.
-								uploadButton.innerHTML = 'Upload';
-								showfiles();
-								} else {
-								alert('Fehler beim Dateiupload!');
-							}
-						};
-						xmlhttp.send(formData);
+						// Add the file to the request.
+						formData.append('dateien[]', file, file.name);
 					}
+					
+					if (window.XMLHttpRequest) {
+						// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp = new XMLHttpRequest();
+						} else {
+						// code for IE6, IE5
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					var url = "utils/uploadfile.php";
+					xmlhttp.open("POST", url, true);
+					
+					// Set up a handler for when the request finishes.
+					xmlhttp.onload = function () {
+						if (xmlhttp.status === 200) {
+							// File(s) uploaded.
+							uploadButton.innerHTML = 'Upload';
+							showfiles();
+							} else {
+							alert('Fehler beim Dateiupload!');
+						}
+					};
+					xmlhttp.send(formData);
+				}
 				}
 				
 			</script>
