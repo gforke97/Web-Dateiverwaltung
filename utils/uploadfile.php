@@ -1,5 +1,5 @@
 <?php
-	$session=$_POST['session'];
+	$session=$_GET['session'];
 	//Dateinamen im Temp-Verzeichnis (automatisch von PHP generiert)
 	$dateientmpname = $_FILES['dateien']['tmp_name'];
 	//Dateinamen der vom Nutzer hochgeladenen Dateien

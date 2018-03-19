@@ -28,11 +28,11 @@
 						<span class="input-group-prepend">
 							<button class="btn btn-default" type="button" onclick="showfiles(1)">Aktualisieren</button>
 						</span>
-						<form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
-							<label class="btn btn-default btn-file">Dateien auswählen
-								<input style="display: none;" type="file" id="file-select" name="dateien[]" multiple/>
+						<form class="form-inline form-control" id="file-form1" action="utils/uploadfile.php" method="POST">
+							<label class="btn btn-default btn-file">Dateien auswählen..
+								<input style="display: none;" type="file" id="file-select1" name="dateien[]" multiple/>
 							</label>
-							<button class="btn btn-default" type="submit" id="upload-button">Upload</button>
+							<button class="btn btn-default" type="submit" id="upload-button1">Upload</button>
 						</form>
 					</div>
 				</div>
@@ -47,9 +47,11 @@
 						<span class="input-group-prepend">
 							<button class="btn btn-default" id="force-inline" type="button" onclick="showfiles(2)">Aktualisieren</button>
 						</span>
-						<form class="form-inline form-control" id="file-form" action="utils/fileupload.php" method="POST">
-							<input class="input-group-btn" type="file" id="file-select" name="dateien[]" multiple/>
-							<button class="btn btn-default" type="submit" id="upload-button">Upload</button>
+						<form class="form-inline form-control" id="file-form2" action="utils/uploadfile.php" method="POST">
+							<label class="btn btn-default btn-file">Dateien auswählen..
+								<input style="display: none;" type="file" id="file-select2" name="dateien[]" multiple/>
+							</label>
+							<button class="btn btn-default" type="submit" id="upload-button2">Upload</button>
 						</form>
 					</div>
 				</div>
@@ -86,60 +88,13 @@
 			$_SESSION['aktordner2'] = "";
 		?>
 		
-		<script>
-			dateihochladenhandler();
-			
-			function dateihochladenhandler() {
-				var form = document.getElementById("file-form");
-				var fileSelect = document.getElementById('file-select');
-				var uploadButton = document.getElementById('upload-button');
-				
-				form.onsubmit = function(event) {
-					event.preventDefault();
-					
-					// Update button text.
-					uploadButton.innerHTML = 'Uploading...';
-					
-					// Get the selected files from the input.
-					var files = fileSelect.files;
-					
-					// Create a new FormData object.
-					var formData = new FormData();
-					
-					// Loop through each of the selected files.
-					for (var i = 0; i < files.length; i++) {
-						var file = files[i];
-						
-						// Add the file to the request.
-						formData.append('dateien[]', file, file.name);
-					}
-					
-					if (window.XMLHttpRequest) {
-						// code for IE7+, Firefox, Chrome, Opera, Safari
-						xmlhttp = new XMLHttpRequest();
-						} else {
-						// code for IE6, IE5
-						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-					}
-					var url = "utils/uploadfile.php";
-					xmlhttp.open("POST", url, true);
-					
-					// Set up a handler for when the request finishes.
-					xmlhttp.onload = function () {
-						if (xmlhttp.status === 200) {
-							// File(s) uploaded.
-							uploadButton.innerHTML = 'Upload';
-							showfiles();
-							} else {
-							alert('Fehler beim Dateiupload!');
-						}
-					};
-					xmlhttp.send(formData);
-				}
-				}
-				
-			</script>
-			
-		</body>
+		<script type="text/javascript">
+			var script = document.createElement('script');
+			script.setAttribute('src', 'fileuploadhandler.js');
+			script.setAttribute('type', 'text/javascript');
+			document.getElementsByTagName('head')[0].appendChild(script);
+		</script>
 		
-	</html>
+	</body>
+	
+</html>
