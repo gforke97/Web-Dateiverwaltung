@@ -52,6 +52,7 @@ include('createconnection.php');
  }
  
 echo "<button class=\"btn\" type=\"button\" onclick=\"changedirectory('$session','..')\">..</button>";
+echo "<button class=\"btn\" type=\"button\" onclick=\"createdirectory('$session')\">+</button>";
 echo "</td>";
 echo "</tr>";
 

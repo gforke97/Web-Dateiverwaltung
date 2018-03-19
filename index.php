@@ -103,6 +103,27 @@
     // nichts
 	}
 	}
+	
+	function createdirectory(session) {
+	xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onload = function () {
+	if (xmlhttp.status === 200) {
+    //Ordner erstellt.
+	showfiles(session);
+	} else {
+    alert('Fehler beim Erstellen des Ordners!');
+	}
+	};
+
+	var ordnername = prompt("Bitte einen neuen Ordnernamen angeben.");
+
+	if (ordnername != null) {
+	var url = "utils/createdirectory.php?session=" + session + "&ordnername=" + ordnername;
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();
+	}
+	}
 
 </script>
   </head>
@@ -161,28 +182,6 @@ $_SESSION['aktordner2'] = "";
 
           </div>
 
-			    <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
-
-            <div class="input-group">
-
-              <div class="input-group-prepend">
-
-                <span class="input-group-text" id="basic-addon1">Neuen Ordner erstellen</span>
-
-              </div>
-
-              <div class="input-group" aria-describedby="basic-addon1">
-
-                <input class="input-group" id="neuerordner-select" placeholder=" Neuer Ordner Name" type="text" name="ordner" />
-
-                <input class="input-group-append btn" id="submit-button" type="submit" />
-
-              </div>
-
-            </div>
-
-          </form>
-
         </div>
 
         <div class="col-sm">
@@ -204,28 +203,6 @@ $_SESSION['aktordner2'] = "";
             </form>
 
           </div>
-
-          <form class="form-inline form-control" id="neuerordner" action="utils/createdirectory.php" method="post">
-
-            <div class="input-group">
-
-              <div class="input-group-prepend">
-
-                <span class="input-group-text" id="basic-addon2">Neuen Ordner erstellen</span>
-
-              </div>
-
-              <div class="input-group" aria-describedby="basic-addon2">
-
-                <input class="input-group" id="neuerordner-select" placeholder=" Neuer Ordner Name" type="text" name="ordner" />
-
-			          <input class="input-group-append btn" id="submit-button" type="submit" />
-
-              </div>
-
-            </div>
-
-          </form>
 
       </div>
 
@@ -315,41 +292,6 @@ $_SESSION['aktordner2'] = "";
 	xmlhttp.send(formData);
 	}
 	}
-
-
-	function ordnererstellenhandler() {
-	var form = document.getElementById("neuerordner");
-	var neuerordnerselect = document.getElementById("neuerordner-select");
-
-	form.onsubmit = function(event) {
-	event.preventDefault();
-
-    var formData = new FormData();
-	formData.append('ordnername', neuerordnerselect.value);
-	formData.append('session', neuerordnerselect.value);
-
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/createdirectory.php";
-	xmlhttp.open("POST", url, true);
-
-	// Set up a handler for when the request finishes.
-	xmlhttp.onload = function () {
-	if (xmlhttp.status === 200) {
-	showfiles();
-	} else {
-    alert('Fehler beim Erstellen des Ordners!');
-	}
-	};
-	xmlhttp.send(formData);
-	}
-	}
-
 
 	</script>
 

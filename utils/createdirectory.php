@@ -1,6 +1,6 @@
 <?php
-$session=$_POST['session'];
-$ordnername=$_POST['ordnername'];
+$session=$_GET['session'];
+$ordnername=$_GET['ordnername'];
  
  include('createconnection.php');
  include('nameisvalid.php');
