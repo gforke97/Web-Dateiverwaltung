@@ -1,10 +1,24 @@
 <?php
+$session=$_POST['session'];
 $ordnername=$_POST['ordnername'];
  
  include('createconnection.php');
  include('nameisvalid.php');
+ 
+ switch($session) {
+	case 1:
+		$aktordner = $_SESSION['aktordner1'];
+		break;
+	
+	case 2:
+		$aktordner = $_SESSION['aktordner2'];
+		break;
+		
+	default:
+		http_response_code(404);
+		exit(1);
+ }
 
- $aktordner = $_SESSION['aktordner'];
  $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordnername;
  
  if ((!isValid($ordnername))||(($ftp->mkdir($vollerpfad)) == FALSE)) {

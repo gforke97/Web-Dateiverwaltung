@@ -103,24 +103,6 @@
     // nichts
 	}
 	}
-	function deletedirectory2(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (confirm('Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
-    var url = "utils/deletedirectory2.php?vollerpfad=" + str;
-    xmlhttp.open("GET",url, false);
-    xmlhttp.send();
-
-    showfiles();
-    } else {
-    // nichts
-   }
-}
 
 </script>
   </head>
@@ -344,6 +326,7 @@ $_SESSION['aktordner2'] = "";
 
     var formData = new FormData();
 	formData.append('ordnername', neuerordnerselect.value);
+	formData.append('session', neuerordnerselect.value);
 
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari

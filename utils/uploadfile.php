@@ -1,4 +1,5 @@
 <?php
+ $session=$_POST['session'];
  //Dateinamen im Temp-Verzeichnis (automatisch von PHP generiert)
  $dateientmpname = $_FILES['dateien']['tmp_name'];
  //Dateinamen der vom Nutzer hochgeladenen Dateien
@@ -6,7 +7,20 @@
  
  include('createconnection.php');
  
- $ftp->chdir($_SESSION['aktordner']);
+  switch($session) {
+	case 1:
+		$ftp->chdir($_SESSION['aktordner1']);
+		break;
+	
+	case 2:
+		 $ftp->chdir($_SESSION['aktordner2']);
+		break;
+		
+	default:
+		http_response_code(404);
+		exit(1);
+ }
+ 
  
  //Ordnet im FTP-Upload einem Dateinamen im Tmp-Verzeichnis den korrekten 
  //(vom Nutzer übergebenen) Dateinamen zu.
