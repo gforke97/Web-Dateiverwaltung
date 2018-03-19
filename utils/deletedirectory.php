@@ -1,4 +1,5 @@
 <?php
+$session=$_GET['session'];
 $vollerpfad=$_GET['vollerpfad'];
  
  include('createconnection.php');

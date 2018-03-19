@@ -89,24 +89,20 @@
     }
 
 
-	function deletedirectory(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+	function deletedirectory(session, str) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+
     if (confirm('Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
-    var url = "utils/deletedirectory.php?vollerpfad=" + str;
+    var url = "utils/deletedirectory.php?session=" + session + "&vollerpfad=" + str;
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-    showfiles();
+    showfiles(session);
     } else {
     // nichts
-   }
-}
+	}
+	}
 	function deletedirectory2(str) {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
