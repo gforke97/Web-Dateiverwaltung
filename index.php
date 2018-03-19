@@ -66,19 +66,14 @@
 	}
 
 
-    function renamefile(str) {
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+    function renamefile(session, str) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.onload = function () {
 	if (xmlhttp.status === 200) {
     // Datei umbenannt.
-	showfiles();
+	showfiles(session);
 	} else {
     alert('Fehler beim Umbenennen!');
 	}
@@ -87,38 +82,12 @@
 	var neuername = prompt("Bitte einen neuen Dateinamen angeben.", str);
 
 	if (neuername != null) {
-	var url = "utils/renamefile.php?altername=" + str + "&neuername=" + neuername;
+	var url = "utils/renamefile.php?session=" + session + "&altername=" + str + "&neuername=" + neuername;
     xmlhttp.open("GET", url, false);
     xmlhttp.send();
 	}
     }
 
-	function renamefile2(str) {
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-	xmlhttp.onload = function () {
-	if (xmlhttp.status === 200) {
-    // Datei umbenannt.
-	showfiles();
-	} else {
-    alert('Fehler beim Umbenennen!');
-	}
-	};
-
-	var neuername = prompt("Bitte einen neuen Dateinamen angeben.", str);
-
-	if (neuername != null) {
-	var url = "utils/renamefile2.php?altername=" + str + "&neuername=" + neuername;
-    xmlhttp.open("GET", url, false);
-    xmlhttp.send();
-	}
-    }
 
 	function deletedirectory(str) {
 	if (window.XMLHttpRequest) {
