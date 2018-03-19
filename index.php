@@ -16,68 +16,30 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 
 	<script>
-	function showfiles() {
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+	function showfiles(session) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("fileslist").innerHTML = this.responseText;
+            document.getElementById("fileslist"+session).innerHTML = this.responseText;
         }
     };
-    xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE", false);
+    var url = "utils/showdirectorycontent.php?session=" + session;
+	xmlhttp.open("GET", url, false);
     xmlhttp.send();
 	}
 
-	function showfiles2() {
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("fileslist2").innerHTML = this.responseText;
-        }
-    };
-    xmlhttp.open("GET","utils/showdirectorycontent2.php?aufruf=TRUE", false);
-    xmlhttp.send();
-	}
 
-	function changedirectory(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/changedirectory.php?ordner=" + str;
+	function changedirectory(session, str) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+		
+	var url = "utils/changedirectory.php?session=" + session + "&ordner=" + str;
 	xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-	showfiles();
-	}
-
-	function changedirectory2(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/changedirectory2.php?ordner=" + str;
-	xmlhttp.open("GET",url, false);
-    xmlhttp.send();
-
-	showfiles();
+	showfiles(session);
 	}
 
     function downloadfile(str) {
@@ -93,18 +55,6 @@
 	window.open(url);
 	}
 
-	function downloadfile2(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/downloadfile2.php?datei=" + str;
-
-	window.open(url);
-	}
 
 	function deletefile(str) {
 	if (window.XMLHttpRequest) {
@@ -252,15 +202,15 @@
 chdir(__DIR__);
 
 session_start();
-$_SESSION['ip'] = "192.168.0.16";
-$_SESSION['user'] = "test";
-$_SESSION['pass'] = "test";
-$_SESSION['aktordner'] = "";
+$_SESSION['ip1'] = "192.168.0.16";
+$_SESSION['user1'] = "test";
+$_SESSION['pass1'] = "test";
+$_SESSION['aktordner1'] = "";
+
+$_SESSION['ip2'] = "192.168.0.16";
+$_SESSION['user2'] = "test";
+$_SESSION['pass2'] = "test";
 $_SESSION['aktordner2'] = "";
-#$_SESSION['ip'] = "ftp.dlptest.com";
-#$_SESSION['user'] = "dlpuser@dlptest.com";
-#$_SESSION['pass'] = "eiTqR7EMZD5zy7M";
-#$_SESSION['aktordner'] = "";
 
 ?>
 
@@ -274,7 +224,7 @@ $_SESSION['aktordner2'] = "";
 
             <span class="input-group-prepend">
 
-              <button class="btn btn-default" type="button" onclick="showfiles()">Aktualisieren</button>
+              <button class="btn btn-default" type="button" onclick="showfiles(1)">Aktualisieren</button>
 
             </span>
 
@@ -322,7 +272,7 @@ $_SESSION['aktordner2'] = "";
 
             <span class="input-group-prepend">
 
-              <button class="btn btn-default" id="force-inline" type="button" onclick="showfiles2()">Aktualisieren</button>
+              <button class="btn btn-default" id="force-inline" type="button" onclick="showfiles(2)">Aktualisieren</button>
 
             </span>
 
@@ -362,7 +312,7 @@ $_SESSION['aktordner2'] = "";
 
       <div class="row">
 
-        <div class="col-sm" id="fileslist">
+        <div class="col-sm" id="fileslist1">
 
         </div>
 

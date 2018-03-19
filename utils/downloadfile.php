@@ -4,7 +4,7 @@ $datei=$_GET['datei'];
  
  include('createconnection.php');
  
- $ftp->chdir($_SESSION['aktordner']);
+ $ftp->chdir($_SESSION['aktordner1']);
  
  $downloadpfad = DIRECTORY_SEPARATOR . "tmp" . DIRECTORY_SEPARATOR . $datei;
  

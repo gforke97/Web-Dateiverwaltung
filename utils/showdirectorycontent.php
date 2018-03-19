@@ -17,20 +17,43 @@
 						<tbody>
 							<tr>
 								<td>
-									<button class="btn" type="button" onclick="changedirectory('..');">..</button>
-								</td>
-							</tr>
+
 
 <?php
 
 include('createconnection.php');
 
- $ftp->chdir($_SESSION['aktordner']);
- $aktordner = $_SESSION['aktordner'];
+ $session=$_GET['session'];
+ 
+ switch($session) {
+	case 1:
+		$ftp->chdir($_SESSION['aktordner1']);
+		$aktordner = $_SESSION['aktordner1'];
 
- $items = $ftp->scanDir(false);
+		$items = $ftp->scanDir(false);	
 
- $ftp->close();
+		$ftp->close();
+	
+		break;
+	
+	case 2:
+		$ftp->chdir($_SESSION['aktordner2']);
+		$aktordner = $_SESSION['aktordner2'];
+
+		$items = $ftp->scanDir(false);	
+
+		$ftp->close();
+	
+		break;
+		
+	default:
+		http_response_code(404);
+		exit(1);
+ }
+ 
+echo "<button class=\"btn\" type=\"button\" onclick=\"changedirectory('$session','..')\">..</button>";
+echo "</td>";
+echo "</tr>";
 
  //print_r ($items['file#/putty.zip']);
  global $dateien, $ordners;
@@ -50,7 +73,7 @@ foreach($items as $dateiordner){
 
 foreach ($ordners as $ordner){
 echo "<tr>";
-echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
+echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"changedirectory('$session','$ordner[name]');\">$ordner[name]</button></td>";
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
