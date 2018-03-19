@@ -50,43 +50,21 @@
 	}
 
 
-	function deletefile(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+	function deletefile(session, str) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+		
     if (confirm('Möchten Sie die Datei wirklich löschen?')) {
-    var url = "utils/deletefile.php?vollerpfad=" + str;
+	var url = "utils/deletefile.php?session=" + session + "&vollerpfad=" + str;
     xmlhttp.open("GET",url, false);
     xmlhttp.send();
 
-    showfiles();
+    showfiles(session);
     } else {
     // nichts
     }
 	}
 
-	function deletefile2(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (confirm('Möchten Sie die Datei wirklich löschen?')) {
-    var url = "utils/deletefile2.php?vollerpfad=" + str;
-    xmlhttp.open("GET",url, false);
-    xmlhttp.send();
-
-    showfiles();
-    } else {
-    // nichts
-    }
-	}
 
     function renamefile(str) {
     if (window.XMLHttpRequest) {
