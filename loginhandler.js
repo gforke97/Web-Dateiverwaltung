@@ -16,12 +16,13 @@ function loginhandler(session) {
 		xmlhttp = new XMLHttpRequest();
 		
 		var url = "utils/login.php?session="+session;
-		xmlhttp.open("POST", url, true);
+		xmlhttp.open("POST", url);
 		
 		// Set up a handler for when the request finishes.
 		xmlhttp.onload = function () {
 			if (xmlhttp.status === 200) {
 				// Login successfull.
+				console.log("Login");
 				document.getElementById('upload'+session).style.visibility = "visible";
 				document.getElementById('fileslist'+session).style.visibility = "visible";
 				showfiles(session);

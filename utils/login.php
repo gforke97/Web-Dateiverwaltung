@@ -3,11 +3,7 @@
 	$server=$_POST['server'];
 	$user=$_POST['nutzer'];
 	$password=$_POST['passwort'];
-	
-	include(__DIR__.'/../lib/FtpClient.php');
-	include(__DIR__.'/../lib/FtpException.php');
-	include(__DIR__.'/../lib/FtpWrapper.php');
-	
+		
 	session_start();
 	
 	switch($session) {
@@ -25,4 +21,7 @@
 		$_SESSION['aktordner2'] = "";
 		break;
 	}
+	
+	include('createconnection.php');
+	
 ?>
