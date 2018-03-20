@@ -89,7 +89,7 @@ echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
 echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletefile('$session','$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
 echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button>";
-echo "<button class=\"btn image_button\" type=\"button\" onclick=\"transferfile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button></td>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"transferfile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/transfer.png\" alt=\"Transfer\"></button></td>";
 echo "</tr>";
 }
 
