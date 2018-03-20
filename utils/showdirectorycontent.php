@@ -23,6 +23,7 @@
  $session=$_GET['session'];
  
 include('createconnection.php');
+
  
  switch($session) {
 	case 1:
@@ -50,8 +51,8 @@ include('createconnection.php');
 		exit(1);
  }
  
-echo "<button class=\"btn\" type=\"button\" onclick=\"changedirectory('$session','..')\">..</button>";
-echo "<button class=\"btn\" type=\"button\" onclick=\"createdirectory('$session')\">+</button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"changedirectory('$session','..')\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/folderup.png\" alt=\"Folder up\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"createdirectory('$session')\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/newfolder.png\" alt=\"New Folder\"></button>";
 echo "</td>";
 echo "</tr>";
 
