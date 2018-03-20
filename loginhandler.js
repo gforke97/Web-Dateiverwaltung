@@ -3,10 +3,14 @@ loginhandler(2);
 
 function loginhandler(session) {
 	var form = document.getElementById("login"+session);
+	var loginButton = document.getElementById('login-button'+session);
 	var formData = new FormData();
 	
 	form.onsubmit = function(event) {
 		event.preventDefault();
+		
+		// Update button text.
+		loginButton.innerHTML = 'Logging in...';		
 		
 		formData.append('server', document.getElementById('server'+session).value);
 		formData.append('nutzer', document.getElementById('nutzer'+session).value);
@@ -20,15 +24,24 @@ function loginhandler(session) {
 		
 		// Set up a handler for when the request finishes.
 		xmlhttp.onload = function () {
-			if (xmlhttp.status === 200) {
-				// Login successfull.
-				console.log("Login");
-				document.getElementById('upload'+session).style.visibility = "visible";
-				document.getElementById('fileslist'+session).style.visibility = "visible";
-				showfiles(session);
-				} else {
-				alert('Fehler beim Login!');
-			}
+			switch (xmlhttp.status) {
+				case 200:
+					// Login successfull.
+					loginButton.innerHTML = 'Login';
+					loginButton.style.visibility = "hidden";
+					document.getElementById('upload'+session).style.visibility = "visible";
+					document.getElementById('fileslist'+session).style.visibility = "visible";
+					showfiles(session);
+					break;
+				case 460:
+					loginButton.innerHTML = 'Login';
+					alert('Keine Verbindung mit Server möglich!');
+					break;
+				case 461:
+					loginButton.innerHTML = 'Login';
+					alert('Kein Login mit angegebenen Daten möglich!');
+					break;
+			}			
 		};
 		xmlhttp.send(formData);
 	}
