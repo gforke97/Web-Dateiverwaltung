@@ -18,7 +18,6 @@
 							<tr>
 								<td>
 
-
 <?php
 
  $session=$_GET['session'];
@@ -56,18 +55,13 @@ echo "<button class=\"btn\" type=\"button\" onclick=\"createdirectory('$session'
 echo "</td>";
 echo "</tr>";
 
- //print_r ($items['file#/putty.zip']);
  global $dateien, $ordners;
- //global $ordner = array();
 
 foreach($items as $dateiordner){
-	#print_r ($dateiordner['type']);
 	if ($dateiordner['type'] == "file"){
-	//print_r ($dateiordner);
 	$dateien[] = $dateiordner;
 	}
 	if ($dateiordner['type'] == "directory"){
-        //print_r ($dateiordner);
 	$ordners[] = $dateiordner;
 	}
 }
@@ -93,7 +87,8 @@ echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
 echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletefile('$session','$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
-echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button></td>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"transferfile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button></td>";
 echo "</tr>";
 }
 

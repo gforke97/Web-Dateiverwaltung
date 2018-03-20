@@ -1,6 +1,5 @@
 <?php
 	$session=$_GET['session'];
-	//kompletter Pfad
 	$datei=$_GET['datei'];
 	
 	include('createconnection.php');
@@ -21,7 +20,12 @@
 	
 	$downloadpfad = DIRECTORY_SEPARATOR . "tmp" . DIRECTORY_SEPARATOR . $datei;
 	
-	$ftp->get($downloadpfad, $datei, 2);
+	if (($ftp->get($downloadpfad, $datei, 2)) == FALSE) {
+		http_response_code(404);
+	}
+	else {
+		//Do nothing.
+	}
 	
 	$ftp->close();
 	
@@ -34,11 +38,10 @@
 		header('Pragma: public');
 		header('Content-Length: ' . filesize($downloadpfad));
 		readfile($downloadpfad);
-	exit;
+		exit;
 	}
 	else {
-	http_response_code(404);
+		http_response_code(404);
 	}
 	
-	?>
-		
+?>

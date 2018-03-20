@@ -105,4 +105,23 @@ function createdirectory(session) {
 		xmlhttp.open("GET", url, false);
 		xmlhttp.send();
 	}
+}
+
+function transferfile (session, str) {
+	// code for IE7+, Firefox, Chrome, Opera, Safari
+	xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onload = function () {
+		if (xmlhttp.status === 200) {
+			// Datei transferiert.
+			showfiles(1);
+			showfiles(2);
+			} else {
+			alert('Fehler beim Datentransfer!');
+		}
+	};
+	
+	var url = "utils/transferfile.php?session=" + session + "&datei=" + str;
+	xmlhttp.open("GET", url, false);
+	xmlhttp.send();
 }	

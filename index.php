@@ -16,6 +16,14 @@
 	</head>
 	
 	<body>	
+	
+	<!--On every page reload, a user has to login to the FTP server.-->
+	<?php
+		session_start();
+		$_SESSION = array();
+		session_destroy();
+	?>
+		
 		<div class="jumbotron">
 			<h1 class="display-4">Web Dateiverwaltung</h1>
 			<p class="lead">Einfache Dateiverwaltung zwischen zwei FTP Servern</p>
