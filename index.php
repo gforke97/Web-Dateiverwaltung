@@ -37,7 +37,7 @@
 							<div class="input-group" aria-describedby="basic-addon1">
 								<input class="form-control" id="server1" placeholder="Serveradresse" type="text" name="server" />
 								<input class="form-control" id="nutzer1" placeholder="Nutzer" type="text" name="nutzer" />
-								<input class="form-control" id="passwort1" placeholder="Passwort" type="text" name="passwort" />
+								<input class="form-control" id="passwort1" placeholder="Passwort" type="password" name="passwort" />
 								<button class="input-group-append btn" id="login-button1" type="submit">Login</button>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 							<div class="input-group" aria-describedby="basic-addon1">
 								<input class="form-control" id="server2" placeholder="Serveradresse" type="text" name="server" />
 								<input class="form-control" id="nutzer2" placeholder="Nutzer" type="text" name="nutzer" />
-								<input class="form-control" id="passwort2" placeholder="Passwort" type="text" name="passwort" />
+								<input class="form-control" id="passwort2" placeholder="Passwort" type="password" name="passwort" />
 								<button class="input-group-append btn" id="login-button2" type="submit">Login</button>
 							</div>
 						</div>
