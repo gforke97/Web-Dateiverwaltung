@@ -36,15 +36,27 @@ function deletefile(session, str) {
 	// code for IE7+, Firefox, Chrome, Opera, Safari
 	xmlhttp = new XMLHttpRequest();
 	
-	if (confirm('Möchten Sie die Datei wirklich löschen?')) {
+	xmlhttp.onload = function () {
+		if (xmlhttp.status === 200) {
+			// Gelöscht.
+			alertify.success('Erfolgreich gelöscht.');
+			showfiles(session);
+			} else {
+			alertify.error('Fehler beim Löschen!');
+		}
+	};
+	
+	alertify.confirm("Web-Dateiverwaltung 2.0", "Möchten Sie die Datei wirklich löschen?",
+		function(){
 		var url = "utils/deletefile.php?session=" + session + "&vollerpfad=" + str;
 		xmlhttp.open("GET",url, false);
 		xmlhttp.send();
 		
 		showfiles(session);
-		} else {
-		// nichts
-	}
+		},
+		function(){
+		});
+
 }
 
 
@@ -55,35 +67,51 @@ function renamefile(session, str) {
 	xmlhttp.onload = function () {
 		if (xmlhttp.status === 200) {
 			// Datei umbenannt.
+			alertify.success('Erfolgreich umbenannt.');
 			showfiles(session);
 			} else {
-			alert('Fehler beim Umbenennen!');
+			alertify.error('Fehler beim Umbenennen!');
 		}
 	};
 	
-	var neuername = prompt("Bitte einen neuen Dateinamen angeben.", str);
-	
-	if (neuername != null) {
-		var url = "utils/renamefile.php?session=" + session + "&altername=" + str + "&neuername=" + neuername;
-		xmlhttp.open("GET", url, false);
-		xmlhttp.send();
+	alertify.prompt("Web-Dateiverwaltung 2.0", "Neuer Name:", str,
+	  function(evt, value ){
+			if (value != null) {
+			var url = "utils/renamefile.php?session=" + session + "&altername=" + str + "&neuername=" + value;
+			xmlhttp.open("GET", url, false);
+			xmlhttp.send();
+			}
+	  },
+	  function() {
+	  })
+	  ;
 	}
-}
-
 
 function deletedirectory(session, str) {
 	// code for IE7+, Firefox, Chrome, Opera, Safari
 	xmlhttp = new XMLHttpRequest();
 	
-	if (confirm('Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
-		var url = "utils/deletedirectory.php?session=" + session + "&vollerpfad=" + str;
-		xmlhttp.open("GET",url, false);
-		xmlhttp.send();
+	xmlhttp.onload = function () {
+		if (xmlhttp.status === 200) {
+			// Gelöscht.
+			alertify.success('Erfolgreich gelöscht.');
+			showfiles(session);
+			} else {
+			alertify.error('Fehler beim Löschen!');
+		}
+	};
+	
+	alertify.confirm("Web-Dateiverwaltung 2.0", "Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?",
+		function(){
+			var url = "utils/deletedirectory.php?session=" + session + "&vollerpfad=" + str;
+			xmlhttp.open("GET",url, false);
+			xmlhttp.send();
 		
-		showfiles(session);
-		} else {
-		// nichts
-	}
+			showfiles(session);
+		},
+		function(){
+		});
+
 }
 
 function createdirectory(session) {
@@ -92,19 +120,25 @@ function createdirectory(session) {
 	xmlhttp.onload = function () {
 		if (xmlhttp.status === 200) {
 			//Ordner erstellt.
+			alertify.success('Ordner erfolgreich erstellt.')
 			showfiles(session);
 			} else {
-			alert('Fehler beim Erstellen des Ordners!');
+			alertify.error('Fehler beim Erstellen des Ordners!');
 		}
 	};
 	
-	var ordnername = prompt("Bitte einen neuen Ordnernamen angeben.");
-	
-	if (ordnername != null) {
-		var url = "utils/createdirectory.php?session=" + session + "&ordnername=" + ordnername;
+	alertify.prompt("Web-Dateiverwaltung 2.0", "Neuer Ordner:", "",
+	  function(evt, value ){
+		if (value != null) {
+		var url = "utils/createdirectory.php?session=" + session + "&ordnername=" + value;
 		xmlhttp.open("GET", url, false);
 		xmlhttp.send();
-	}
+		}
+	  },
+	  function() {
+	  })
+	  ;
+	
 }
 
 function transferfile (session, str) {
@@ -112,12 +146,22 @@ function transferfile (session, str) {
 	xmlhttp = new XMLHttpRequest();
 	
 	xmlhttp.onload = function () {
-		if (xmlhttp.status === 200) {
+		
+	switch (xmlhttp.status) {
+		case 200:
 			// Datei transferiert.
+			alertify.success('Datentransfer erfolgreich.');
 			showfiles(1);
 			showfiles(2);
-			} else {
-			alert('Fehler beim Datentransfer!');
+			break;
+		case 460:
+			alertify.error('Keine Verbindung mit anderem Server möglich!');
+			break;
+		case 461:
+			alertify.error('Kein Login mit angegebenen Daten möglich!');
+			break;
+		default:
+			alertify.error('Fehler beim Datentransfer!');
 		}
 	};
 	

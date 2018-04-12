@@ -31,15 +31,16 @@ function loginhandler(session) {
 					loginButton.style.visibility = "hidden";
 					document.getElementById('upload'+session).style.visibility = "visible";
 					document.getElementById('fileslist'+session).style.visibility = "visible";
+					alertify.success('Login erfolgreich.');
 					showfiles(session);
 					break;
 				case 460:
 					loginButton.innerHTML = 'Login';
-					alert('Keine Verbindung mit Server möglich!');
+					alertify.error('Keine Verbindung mit Server möglich!');
 					break;
 				case 461:
 					loginButton.innerHTML = 'Login';
-					alert('Kein Login mit angegebenen Daten möglich!');
+					alertify.error('Kein Login mit angegebenen Daten möglich!');
 					break;
 			}			
 		};

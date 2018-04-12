@@ -37,9 +37,10 @@ function dateihochladenhandler(session) {
 			if (xmlhttp.status === 200) {
 				// File(s) uploaded.
 				uploadButton.innerHTML = 'Upload';
+				alertify.success('Hochladen erfolgreich.');
 				showfiles(session);
 				} else {
-				alert('Fehler beim Dateiupload!');
+				alertify.error('Fehler beim Dateiupload!');
 			}
 		};
 		xmlhttp.send(formData);
