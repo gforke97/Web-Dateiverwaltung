@@ -17,7 +17,7 @@
 	
 	<body>	
 	
-	<!--On every page reload, a user has to login to the FTP server.-->
+	<!--Bei jedem Neuladen der Seite muss sich der Benutzer neu einloggen.-->
 	<?php
 		session_start();
 		$_SESSION = array();
@@ -29,7 +29,8 @@
 			<p class="lead">Einfache Dateiverwaltung zwischen zwei FTP Servern</p>
 		</div>
 		
-		<div class="row">				
+
+		<div class="row container-fluid">	<!--Rows muessen innerhalb eines Containers platziert werden, damit die Scrolleiste nicht sichtbar wird.-->			
 			<div class="col" id="ftpfenster1">
 				<div class="col-sm">
 					<form class="form-inline form-control" id="login1" action="utils/login.php" method="post">
