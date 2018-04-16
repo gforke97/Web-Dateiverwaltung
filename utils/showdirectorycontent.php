@@ -2,7 +2,7 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-md table-responsive">
+				<div class="col-sm table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
@@ -17,59 +17,89 @@
 						<tbody>
 							<tr>
 								<td>
-									<button class="btn" type="button" onclick="changedirectory('..');">..</button>
-								</td>
-							</tr>
 
 <?php
 
+ $session=$_GET['session'];
+ 
 include('createconnection.php');
 
- $ftp->chdir($_SESSION['aktordner']);
- $aktordner = $_SESSION['aktordner'];
+ 
+ switch($session) {
+	case 1:
+		$ftp->chdir($_SESSION['aktordner1']);
+		$aktordner = $_SESSION['aktordner1'];
 
- $items = $ftp->scanDir(false);
+		$items = $ftp->scanDir(false);	
 
- $ftp->close();
+		$ftp->close();
+	
+		break;
+	
+	case 2:
+		$ftp->chdir($_SESSION['aktordner2']);
+		$aktordner = $_SESSION['aktordner2'];
 
- //print_r ($items['file#/putty.zip']);
+		$items = $ftp->scanDir(false);	
+
+		$ftp->close();
+	
+		break;
+		
+	default:
+		http_response_code(404);
+		exit(1);
+ }
+ 
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"changedirectory('$session','..')\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/folderup.png\" alt=\"Folder up\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"createdirectory('$session')\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/newfolder.png\" alt=\"New Folder\"></button>";
+echo "</td>";
+echo "</tr>";
+
  global $dateien, $ordners;
- //global $ordner = array();
 
 foreach($items as $dateiordner){
-	#print_r ($dateiordner['type']);
 	if ($dateiordner['type'] == "file"){
-	//print_r ($dateiordner);
 	$dateien[] = $dateiordner;
 	}
 	if ($dateiordner['type'] == "directory"){
-        //print_r ($dateiordner);
 	$ordners[] = $dateiordner;
 	}
 }
 
 foreach ($ordners as $ordner){
 echo "<tr>";
-echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"changedirectory('$ordner[name]');\">$ordner[name]</button></td>";
+echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"changedirectory('$session','$ordner[name]');\">$ordner[name]</button></td>";
 echo "<td></td>";
 echo "<td>Ordner</td>";
 echo "<td>$ordner[day]. $ordner[month]</td>";
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $ordner[name] . DIRECTORY_SEPARATOR;
+<<<<<<< HEAD
 echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletedirectory('$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
 echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$ordner[name]');\"><img id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button></td>";
+=======
+echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletedirectory('$session','$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$session','$ordner[name]');\"><img id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button></td>";
+>>>>>>> pr/4
 echo "</tr>";
 }
 
 foreach ($dateien as $datei){
 $vollerpfad = $aktordner . DIRECTORY_SEPARATOR . $datei[name];
 echo "<tr id=\"tr_directory\">";
-echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"downloadfile('$datei[name]');\">$datei[name]</button></td>";
+echo "<td><button class=\"btn btn-link\" type=\"button\" onclick=\"downloadfile('$session','$datei[name]');\">$datei[name]</button></td>";
 $dateigroesse = humanfilesize($datei[size]);
 echo "<td>$dateigroesse</td>";
 echo "<td>Datei</td>";
 echo "<td>$datei[day]. $datei[month]</td>";
+<<<<<<< HEAD
 echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletefile('$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
 echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button></td>";
+=======
+echo "<td class=\"button_row\"><button class=\"btn image_button\" type=\"button\" onclick=\"deletefile('$session','$vollerpfad');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/trashbin.png\" alt=\"Trash Bin\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"renamefile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/rename.png\" alt=\"Rename\"></button>";
+echo "<button class=\"btn image_button\" type=\"button\" onclick=\"transferfile('$session','$datei[name]');\"><img class=\"img\" id=\"thumbnail-pic\" src=\"img/transfer.png\" alt=\"Transfer\"></button></td>";
+>>>>>>> pr/4
 echo "</tr>";
 }
 

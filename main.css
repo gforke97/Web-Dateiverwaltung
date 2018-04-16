@@ -1,15 +1,37 @@
+.jumbotron {
+  max-height: 200px;
+  font-family: Oswald, sans-serif;
+    src: url(https://fonts.googleapis.com/css?family=Oswald);
+  font-weight: lighter;
+}
+
 .button_row {
   padding-right: 2em;
 }
 
-
 .image_button {
   background: transparent;
+  display: inline;
 }
 
-
-#action-bar-top {
-  display: inline;
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 120%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+/*    background: inherit;*/
+    cursor: inherit;
+    display: block;
 }
 
 #thumbnail-pic {

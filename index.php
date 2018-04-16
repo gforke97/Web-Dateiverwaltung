@@ -1,288 +1,129 @@
 <html>
-
-  <head>
-
-    <!--Bootstrap Framework-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    <!--Main CSS-->
-    <link rel="stylesheet" type="text/css" href="main.css">
-
-	<script>
-	function showfiles() {
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("fileslist").innerHTML = this.responseText;
-        }
-    };
-    xmlhttp.open("GET","utils/showdirectorycontent.php?aufruf=TRUE", false);
-    xmlhttp.send();
-	}
-
-	function changedirectory(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/changedirectory.php?ordner=" + str;
-	xmlhttp.open("GET",url, false);
-    xmlhttp.send();
-
-	showfiles();
-	}
-
-    function downloadfile(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/downloadfile.php?datei=" + str;
-
-	window.open(url);
-	}
-
-	function deletefile(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (confirm('Möchten Sie die Datei wirklich löschen?')) {
-    var url = "utils/deletefile.php?vollerpfad=" + str;
-    xmlhttp.open("GET",url, false);
-    xmlhttp.send();
-
-    showfiles();
-    } else {
-    // nichts
-    }
-	}
-
-    function renamefile(str) {
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-	xmlhttp.onload = function () {
-	if (xmlhttp.status === 200) {
-    // Datei umbenannt.
-	showfiles();
-	} else {
-    alert('Fehler beim Umbenennen!');
-	}
-	};
-
-	var neuername = prompt("Bitte einen neuen Dateinamen angeben.", str);
-
-	if (neuername != null) {
-	var url = "utils/renamefile.php?altername=" + str + "&neuername=" + neuername;
-    xmlhttp.open("GET", url, false);
-    xmlhttp.send();
-	}
-    }
-
-	function deletedirectory(str) {
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (confirm('Möchten Sie den Ordner mit allen Dateien und Unterordnern wirklich löschen?')) {
-    var url = "utils/deletedirectory.php?vollerpfad=" + str;
-    xmlhttp.open("GET",url, false);
-    xmlhttp.send();
-
-    showfiles();
-    } else {
-    // nichts
-   }
-}
-
-</script>
-  </head>
-
-  <body>
-
-    <div class="jumbotron jumbotron-fluid text-center">
-
-      <h1>Web Dateiverwaltung PHP</h1>
-
-    </div>
-
-<?php
-chdir(__DIR__);
-
-session_start();
-$_SESSION['ip'] = "192.168.0.16";
-$_SESSION['user'] = "test";
-$_SESSION['pass'] = "test";
-$_SESSION['aktordner'] = "";
-#$_SESSION['ip'] = "ftp.dlptest.com";
-#$_SESSION['user'] = "dlpuser@dlptest.com";
-#$_SESSION['pass'] = "eiTqR7EMZD5zy7M";
-#$_SESSION['aktordner'] = "";
-
-?>
-
-    <div class="container-fluid">
-
-      <div class="row">
-
-        <div class="col-md" id="action-bar-top">
-
-          <button class="btn" type="button" onclick="showfiles()">Aktualisieren</button>
-
-			    <form class="form-group" id="file-form" action="utils/fileupload.php" method="POST">
-
-			         <input class="input-group" type="file" id="file-select" name="dateien[]" multiple/>
-
-			         <button class="btn" type="submit" id="upload-button">Upload</button>
-
-			    </form>
-
-			<form id="neuerordner" action="utils/createdirectory.php" method="post">
-			 <input id="neuerordner-select" type="text" name="ordner" />
-			 <input type="submit" />
-			</form>
-
-
-        </div>
-
-        <div class="col-md">
-
-        </div>
-
-      </div>
-
-      <div class="row">
-
-        <div class="col-md" id="fileslist">
-
-        </div>
-
-        <div class="col-md">
-
-        </div>
-
-      </div>
-
-    </div>
-
-	<script>
-	dateihochladenhandler();
-	ordnererstellenhandler();
-
-	function dateihochladenhandler() {
-	var form = document.getElementById("file-form");
-	var fileSelect = document.getElementById('file-select');
-	var uploadButton = document.getElementById('upload-button');
-
-	form.onsubmit = function(event) {
-	event.preventDefault();
-
-	// Update button text.
-	uploadButton.innerHTML = 'Uploading...';
-
-	// Get the selected files from the input.
-	var files = fileSelect.files;
-
-	// Create a new FormData object.
-	var formData = new FormData();
-
-	// Loop through each of the selected files.
-	for (var i = 0; i < files.length; i++) {
-	var file = files[i];
-
-	// Add the file to the request.
-	formData.append('dateien[]', file, file.name);
-	}
-
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/uploadfile.php";
-	xmlhttp.open("POST", url, true);
-
-	// Set up a handler for when the request finishes.
-	xmlhttp.onload = function () {
-	if (xmlhttp.status === 200) {
-    // File(s) uploaded.
-    uploadButton.innerHTML = 'Upload';
-	showfiles();
-	} else {
-    alert('Fehler beim Dateiupload!');
-	}
-	};
-	xmlhttp.send(formData);
-	}
-	}
-
-
-	function ordnererstellenhandler() {
-	var form = document.getElementById("neuerordner");
-	var neuerordnerselect = document.getElementById("neuerordner-select");
-
-	form.onsubmit = function(event) {
-	event.preventDefault();
-
-    var formData = new FormData();
-	formData.append('ordnername', neuerordnerselect.value);
-
-	if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-	var url = "utils/createdirectory.php";
-	xmlhttp.open("POST", url, true);
-
-	// Set up a handler for when the request finishes.
-	xmlhttp.onload = function () {
-	if (xmlhttp.status === 200) {
-	showfiles();
-	} else {
-    alert('Fehler beim Erstellen des Ordners!');
-	}
-	};
-	xmlhttp.send(formData);
-	}
-	}
-
-
-	</script>
-
-
-<div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-  </body>
-
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+			
+		<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+		
+		<script src="main.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+	
+	<body>	
+	
+	<!--Bei jedem Neuladen der Seite muss sich der Benutzer neu einloggen.-->
+	<?php
+		session_start();
+		$_SESSION = array();
+		session_destroy();
+	?>
+		
+		<div class="jumbotron">
+			<h1 class="display-4">Web Dateiverwaltung</h1>
+			<p class="lead">Einfache Dateiverwaltung zwischen zwei FTP Servern</p>
+		</div>
+		
+
+		<div class="row container-fluid">	<!--Rows muessen innerhalb eines Containers platziert werden, damit die Scrolleiste nicht sichtbar wird.-->			
+			<div class="col" id="ftpfenster1">
+				<div class="col-sm">
+					<form class="form-inline form-control" id="login1" action="utils/login.php" method="post">
+						<div class="input-group">
+							<div class="input-group" aria-describedby="basic-addon1">
+								<input class="form-control" id="server1" placeholder="Serveradresse" type="text" name="server" />
+								<input class="form-control" id="nutzer1" placeholder="Nutzer" type="text" name="nutzer" />
+								<input class="form-control" id="passwort1" placeholder="Passwort" type="password" name="passwort" />
+								<button class="input-group-append btn" id="login-button1" type="submit">Login</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="col-sm" id="upload1" style="visibility:hidden">
+					<div class="input-group" style="margin-bottom: 1em;">
+						<span class="input-group-prepend">
+							<button class="btn btn-default" type="button" onclick="showfiles(1)">Aktualisieren</button>
+						</span>
+						<form class="form-inline form-control" id="file-form1" action="utils/uploadfile.php" method="POST">
+							<label class="btn btn-default btn-file">Dateien auswählen..
+								<input style="display: none;" type="file" id="file-select1" name="dateien[]" multiple/>
+							</label>
+							<button class="btn btn-default" type="submit" id="upload-button1">Upload</button>
+						</form>
+					</div>
+				</div>
+				
+				<div class="col-" id="fileslist1" style="visibility:hidden">
+				</div>		
+			</div>	
+			
+			
+			<div class="col" id="ftpfenster2">
+				<div class="col-sm">
+					<form class="form-inline form-control" id="login2" action="utils/login.php" method="post">
+						<div class="input-group">
+							<div class="input-group" aria-describedby="basic-addon1">
+								<input class="form-control" id="server2" placeholder="Serveradresse" type="text" name="server" />
+								<input class="form-control" id="nutzer2" placeholder="Nutzer" type="text" name="nutzer" />
+								<input class="form-control" id="passwort2" placeholder="Passwort" type="password" name="passwort" />
+								<button class="input-group-append btn" id="login-button2" type="submit">Login</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="col-sm" id="upload2" style="visibility:hidden">
+					<div class="input-group" style="margin-bottom: 1em;">
+						<span class="input-group-prepend">
+							<button class="btn btn-default" id="force-inline" type="button" onclick="showfiles(2)">Aktualisieren</button>
+						</span>
+						<form class="form-inline form-control" id="file-form2" action="utils/uploadfile.php" method="POST">
+							<label class="btn btn-default btn-file">Dateien auswählen..
+								<input style="display: none;" type="file" id="file-select2" name="dateien[]" multiple/>
+							</label>
+							<button class="btn btn-default" type="submit" id="upload-button2">Upload</button>
+						</form>
+					</div>
+				</div>
+				
+				<div class="col-" id="fileslist2" style="visibility:hidden">
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="col-sm">
+			
+			<div class="panel-footer">
+				<p>Icons made by
+					<a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a>
+					from
+					<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+					is licensed by
+					<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+				</p>
+			</div>
+		</div>
+			
+		<script type="text/javascript">
+			var script = document.createElement('script');
+			script.setAttribute('src', 'fileuploadhandler.js');
+			script.setAttribute('type', 'text/javascript');
+			document.getElementsByTagName('head')[0].appendChild(script);
+			
+			var script = document.createElement('script');
+			script.setAttribute('src', 'loginhandler.js');
+			script.setAttribute('type', 'text/javascript');
+			document.getElementsByTagName('head')[0].appendChild(script);
+
+		</script>
+		
+	</body>
+	
 </html>
