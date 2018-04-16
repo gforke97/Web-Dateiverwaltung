@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-<?php
- include(__DIR__.'/../lib/FtpClient.php');
- include(__DIR__.'/../lib/FtpException.php');
- include(__DIR__.'/../lib/FtpWrapper.php');
- 
- session_start();
- $ftp = new \FtpClient\FtpClient();
- $ftp->connect($_SESSION['ip']);
- $ftp->login($_SESSION['user'], $_SESSION['pass']); 
-=======
 <?php
 	include_once(__DIR__.'/../lib/FtpClient.php');
 	include_once(__DIR__.'/../lib/FtpException.php');
@@ -60,5 +49,4 @@
 		break;
 	}
 	
->>>>>>> pr/4
 ?>
